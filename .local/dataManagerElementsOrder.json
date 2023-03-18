@@ -1,0 +1,66 @@
+{
+  "Workflows": [
+    {
+      "Path": null,
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": null,
+      "ArgumentsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": null,
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Scripts/Test.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Alerts&Sequence_1",
+        "Match&Sequence_2"
+      ],
+      "ArgumentsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": null,
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Main.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Alerts&StateMachine_1",
+        "Config&StateMachine_1",
+        "SystemException&StateMachine_1"
+      ],
+      "ArgumentsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": null,
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Scripts/Initialization.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "AlertsTriggerBody&Sequence_1",
+        "AlertsTriggerSubject&Sequence_1",
+        "AlertsPassword&Sequence_1",
+        "AlertsMail&Sequence_1",
+        "AlertsServer&Sequence_1",
+        "AlertsPort&Sequence_1",
+        "WatchlistID&Sequence_1",
+        "AlertsFolder&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "Config",
+        "Alerts"
+      ],
+      "ConstantsSectionElementsOrder": null,
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Process.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": null,
+      "ArgumentsSectionElementsOrder": [
+        "Alerts",
+        "Config"
+      ],
+      "ConstantsSectionElementsOrder": null,
+      "AddedNamespaces": null
+    }
+  ]
+}

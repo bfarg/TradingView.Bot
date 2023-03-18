@@ -1,0 +1,8 @@
+﻿[STRATEGY=Darvas Box]
+[TRADE=Short]
+[PAIR={{ticker}}]
+[INTERVAL=30m]
+[PRICE={{close}}]
+[BOX.TOP={{plot("BoxTopPlot")}}]
+[BOX.BOTTOM={{plot("BoxBottomPlot")}}]
+[BOX.CLOSE={{plot("BoxClose")}}]
