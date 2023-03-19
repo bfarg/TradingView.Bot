@@ -27,7 +27,18 @@
         "Config&StateMachine_1",
         "SystemException&StateMachine_1"
       ],
-      "ArgumentsSectionElementsOrder": null,
+      "ArgumentsSectionElementsOrder": [
+        "Alert",
+        "Strategy",
+        "Trade",
+        "Pair",
+        "Interval",
+        "Price",
+        "TP",
+        "SL",
+        "Config",
+        "Alerts"
+      ],
       "ConstantsSectionElementsOrder": null,
       "AddedNamespaces": null
     },
@@ -35,14 +46,12 @@
       "Path": "Scripts/Initialization.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "AlertsFolderArchiving&Sequence_1",
+        "AlertsFolderReception&Sequence_1",
         "AlertsTriggerBody&Sequence_1",
         "AlertsTriggerSubject&Sequence_1",
-        "AlertsPassword&Sequence_1",
-        "AlertsMail&Sequence_1",
         "AlertsServer&Sequence_1",
-        "AlertsPort&Sequence_1",
-        "WatchlistID&Sequence_1",
-        "AlertsFolder&Sequence_1"
+        "AlertsPort&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
         "Config",
@@ -59,6 +68,55 @@
         "Alerts",
         "Config"
       ],
+      "ConstantsSectionElementsOrder": null,
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Scripts/AlertsProcessing.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "AlertsMail&Sequence_1",
+        "AlertsPassword&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "Alerts",
+        "Alert",
+        "Config",
+        "Action"
+      ],
+      "ConstantsSectionElementsOrder": null,
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Scripts/Alerts.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": null,
+      "ArgumentsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": null,
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Scripts/AlertsDatas.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Datas&Sequence_1",
+        "Data&Sequence_2"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "Pair",
+        "Trade",
+        "Strategy",
+        "Alert",
+        "Config"
+      ],
+      "ConstantsSectionElementsOrder": null,
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Scripts/AlertsDatas.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": null,
+      "ArgumentsSectionElementsOrder": null,
       "ConstantsSectionElementsOrder": null,
       "AddedNamespaces": null
     }
