@@ -36,8 +36,7 @@
         "Price",
         "TP",
         "SL",
-        "Config",
-        "Alerts"
+        "Config"
       ],
       "ConstantsSectionElementsOrder": null,
       "AddedNamespaces": null
@@ -46,6 +45,7 @@
       "Path": "Scripts/Initialization.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "Ratio&Sequence_1",
         "AlertsFolderArchiving&Sequence_1",
         "AlertsFolderReception&Sequence_1",
         "AlertsTriggerBody&Sequence_1",
@@ -63,7 +63,16 @@
     {
       "Path": "Process.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": null,
+      "VariablesSectionElementsOrder": [
+        "SL&Sequence_2",
+        "TP&Sequence_2",
+        "Price&Sequence_2",
+        "Interval&Sequence_2",
+        "Trade&Sequence_2",
+        "Pair&Sequence_2",
+        "Match&Sequence_2",
+        "Strategy&Sequence_2"
+      ],
       "ArgumentsSectionElementsOrder": [
         "Alerts",
         "Config"
@@ -96,15 +105,23 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/AlertsDatas.xaml",
+      "Path": "Scripts/GetDatas.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "Datas&Sequence_1",
-        "Data&Sequence_2"
+        "BoxBottom&Sequence_1",
+        "BoxTop&Sequence_1",
+        "Value&Sequence_1",
+        "Key&Sequence_1",
+        "Data&Sequence_1",
+        "Datas&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
-        "Pair",
+        "SL",
+        "TP",
+        "Price",
+        "Interval",
         "Trade",
+        "Pair",
         "Strategy",
         "Alert",
         "Config"
@@ -117,6 +134,25 @@
       "SortBy": 0,
       "VariablesSectionElementsOrder": null,
       "ArgumentsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": null,
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Scripts/OpenOrder.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": null,
+      "ArgumentsSectionElementsOrder": [
+        "Exchange",
+        "Username",
+        "CloseOrder",
+        "Pair",
+        "OrderType",
+        "Decision",
+        "OrderPrice",
+        "Quantity",
+        "TP",
+        "SL"
+      ],
       "ConstantsSectionElementsOrder": null,
       "AddedNamespaces": null
     }

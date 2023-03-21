@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1021,784</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1021,860</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Config_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="100">
@@ -120,7 +120,7 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Config" sap:VirtualizedContainerService.HintSize="512,471" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Config" sap:VirtualizedContainerService.HintSize="512,795" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="AlertsFolderReception" />
       <Variable x:TypeArguments="x:Int32" Name="AlertsPort" />
@@ -128,6 +128,7 @@
       <Variable x:TypeArguments="x:String" Name="AlertsTriggerSubject" />
       <Variable x:TypeArguments="x:String" Name="AlertsTriggerBody" />
       <Variable x:TypeArguments="x:String" Name="AlertsFolderArchiving" />
+      <Variable x:TypeArguments="x:String" Name="Ratio" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -276,18 +277,34 @@
         </ui:MultipleAssign.AssignOperations>
       </ui:MultipleAssign>
     </Sequence>
+    <ui:GetRobotAsset AssetName="RiskRatio" CacheStrategy="None" DisplayName="Get risk/reward ratio" sap:VirtualizedContainerService.HintSize="450,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_16">
+      <ui:GetRobotAsset.TimeoutMS>
+        <InArgument x:TypeArguments="x:Int32" />
+      </ui:GetRobotAsset.TimeoutMS>
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[Ratio]</OutArgument>
+      </ui:GetRobotAsset.Value>
+    </ui:GetRobotAsset>
+    <ui:MultipleAssign DisplayName="Assign variables to config" sap:VirtualizedContainerService.HintSize="450,101" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
+      <ui:MultipleAssign.AssignOperations>
+        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_10">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Config("RiskRatio")]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[Ratio]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+        </scg:List>
+      </ui:MultipleAssign.AssignOperations>
+    </ui:MultipleAssign>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Alerts processing" sap:VirtualizedContainerService.HintSize="450,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Scripts\AlertsProcessing.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="Config">
-          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:String)" ExpressionText="Config" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="Action">
-          <Literal x:TypeArguments="x:String">Get</Literal>
-        </InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="Config">[Config]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Action">Get</InArgument>
         <InArgument x:TypeArguments="snm:MailMessage" x:Key="Alert" />
-        <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="Alerts">
-          <VisualBasicReference x:TypeArguments="scg:List(snm:MailMessage)" ExpressionText="Alerts" />
-        </OutArgument>
+        <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="Alerts">[Alerts]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
   </Sequence>

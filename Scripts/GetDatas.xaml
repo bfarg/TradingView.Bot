@@ -6,14 +6,14 @@
     <x:Property Name="Pair" Type="OutArgument(x:String)" />
     <x:Property Name="Trade" Type="OutArgument(x:String)" />
     <x:Property Name="Interval" Type="OutArgument(x:String)" />
-    <x:Property Name="Price" Type="OutArgument(x:String)" />
-    <x:Property Name="TP" Type="OutArgument(x:String)" />
-    <x:Property Name="SL" Type="OutArgument(x:String)" />
+    <x:Property Name="Price" Type="OutArgument(x:Double)" />
+    <x:Property Name="TP" Type="OutArgument(x:Double)" />
+    <x:Property Name="SL" Type="OutArgument(x:Double)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1021,1294</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1021,1453</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetDatas_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -109,14 +109,14 @@
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Alerts datas" sap:VirtualizedContainerService.HintSize="657,1229" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Alerts datas" sap:VirtualizedContainerService.HintSize="657,1388" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="Datas" />
       <Variable x:TypeArguments="x:String" Name="Data" />
       <Variable x:TypeArguments="x:String" Name="Key" />
       <Variable x:TypeArguments="x:String" Name="Value" />
-      <Variable x:TypeArguments="x:String" Name="BoxTop" />
-      <Variable x:TypeArguments="x:String" Name="BoxBottom" />
+      <Variable x:TypeArguments="x:Double" Name="BoxTop" />
+      <Variable x:TypeArguments="x:Double" Name="BoxBottom" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -124,13 +124,13 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:Matches DisplayName="Match alert parameters" sap:VirtualizedContainerService.HintSize="595,60" sap2010:WorkflowViewState.IdRef="Matches_3" Input="[Alert.Body]" IsBuilderTabModified="False" Pattern="[Config(&quot;Alerts.TriggerBody&quot;)]" RegexOption="IgnoreCase, Compiled" Result="[Datas]" />
-    <ui:ForEach x:TypeArguments="str:Match" CurrentIndex="{x:Null}" DisplayName="For each data" sap:VirtualizedContainerService.HintSize="595,925" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[Datas]">
+    <ui:ForEach x:TypeArguments="str:Match" CurrentIndex="{x:Null}" DisplayName="For each data" sap:VirtualizedContainerService.HintSize="595,1054" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[Datas]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="str:Match">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="str:Match" Name="Item" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Get datas" sap:VirtualizedContainerService.HintSize="559,798" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <Sequence DisplayName="Get datas" sap:VirtualizedContainerService.HintSize="559,927" sap2010:WorkflowViewState.IdRef="Sequence_4">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -168,11 +168,11 @@
               </ui:MultipleAssign.AssignOperations>
             </ui:MultipleAssign>
             <ui:LogMessage DisplayName="Log data" sap:VirtualizedContainerService.HintSize="497,94" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[Data]" />
-            <Switch x:TypeArguments="x:String" DisplayName="Switch datas" Expression="[Key]" sap:VirtualizedContainerService.HintSize="497,350" sap2010:WorkflowViewState.IdRef="Switch`1_4">
+            <Switch x:TypeArguments="x:String" DisplayName="Switch datas" Expression="[Key]" sap:VirtualizedContainerService.HintSize="497,479" sap2010:WorkflowViewState.IdRef="Switch`1_4">
               <Switch.Default>
                 <Throw DisplayName="Throw unknown alert data" Exception="[New Exception(&quot;Unknown alert data : &quot; + Item.ToString)]" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="Throw_1" />
               </Switch.Default>
-              <Assign x:Key="STRATEGY" DisplayName="Assign strategy" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign x:Key="STRATEGY" DisplayName="Assign strategy" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[Strategy]</OutArgument>
                 </Assign.To>
@@ -180,7 +180,7 @@
                   <InArgument x:TypeArguments="x:String">[Value]</InArgument>
                 </Assign.Value>
               </Assign>
-              <Assign x:Key="PAIR" DisplayName="Assign pair" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_3">
+              <Assign x:Key="PAIR" DisplayName="Assign pair" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_3">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[Pair]</OutArgument>
                 </Assign.To>
@@ -188,7 +188,7 @@
                   <InArgument x:TypeArguments="x:String">[Value]</InArgument>
                 </Assign.Value>
               </Assign>
-              <Assign x:Key="TRADE" DisplayName="Assign trade" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_4">
+              <Assign x:Key="TRADE" DisplayName="Assign trade" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_4">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[Trade]</OutArgument>
                 </Assign.To>
@@ -196,7 +196,7 @@
                   <InArgument x:TypeArguments="x:String">[Value]</InArgument>
                 </Assign.Value>
               </Assign>
-              <Assign x:Key="INTERVAL" DisplayName="Assign interval" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_5">
+              <Assign x:Key="INTERVAL" DisplayName="Assign interval" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_5">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[Interval]</OutArgument>
                 </Assign.To>
@@ -206,42 +206,42 @@
               </Assign>
               <Assign x:Key="PRICE" DisplayName="Assign price" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_6">
                 <Assign.To>
-                  <OutArgument x:TypeArguments="x:String">[Price]</OutArgument>
+                  <OutArgument x:TypeArguments="x:Double">[Price]</OutArgument>
                 </Assign.To>
                 <Assign.Value>
-                  <InArgument x:TypeArguments="x:String">[Value]</InArgument>
+                  <InArgument x:TypeArguments="x:Double">[CDbl(Value)]</InArgument>
                 </Assign.Value>
               </Assign>
               <Assign x:Key="TP" DisplayName="Assign TP" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_11">
                 <Assign.To>
-                  <OutArgument x:TypeArguments="x:String">[TP]</OutArgument>
+                  <OutArgument x:TypeArguments="x:Double">[TP]</OutArgument>
                 </Assign.To>
                 <Assign.Value>
-                  <InArgument x:TypeArguments="x:String">[Value]</InArgument>
+                  <InArgument x:TypeArguments="x:Double">[CDbl(Value)]</InArgument>
                 </Assign.Value>
               </Assign>
-              <Assign x:Key="SL" DisplayName="Assign SL" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_12">
+              <Assign x:Key="SL" DisplayName="Assign SL" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_12">
                 <Assign.To>
-                  <OutArgument x:TypeArguments="x:String">[SL]</OutArgument>
+                  <OutArgument x:TypeArguments="x:Double">[SL]</OutArgument>
                 </Assign.To>
                 <Assign.Value>
-                  <InArgument x:TypeArguments="x:String">[Value]</InArgument>
+                  <InArgument x:TypeArguments="x:Double">[CDbl(Value)]</InArgument>
                 </Assign.Value>
               </Assign>
-              <Assign x:Key="BOX.TOP" DisplayName="Assign box top" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_10">
+              <Assign x:Key="BOX.TOP" DisplayName="Assign box top" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_10">
                 <Assign.To>
-                  <OutArgument x:TypeArguments="x:String">[BoxTop]</OutArgument>
+                  <OutArgument x:TypeArguments="x:Double">[BoxTop]</OutArgument>
                 </Assign.To>
                 <Assign.Value>
-                  <InArgument x:TypeArguments="x:String">[Value]</InArgument>
+                  <InArgument x:TypeArguments="x:Double">[CDbl(Value)]</InArgument>
                 </Assign.Value>
               </Assign>
-              <Assign x:Key="BOX.BOTTOM" DisplayName="Assign box bottom" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_9">
+              <Assign x:Key="BOX.BOTTOM" DisplayName="Assign box bottom" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_9">
                 <Assign.To>
-                  <OutArgument x:TypeArguments="x:String">[BoxBottom]</OutArgument>
+                  <OutArgument x:TypeArguments="x:Double">[BoxBottom]</OutArgument>
                 </Assign.To>
                 <Assign.Value>
-                  <InArgument x:TypeArguments="x:String">[Value]</InArgument>
+                  <InArgument x:TypeArguments="x:Double">[CDbl(Value)]</InArgument>
                 </Assign.Value>
               </Assign>
               <x:Null x:Key="BOX.CLOSE" />
@@ -250,28 +250,80 @@
         </ActivityAction>
       </ui:ForEach.Body>
     </ui:ForEach>
-    <ui:IfElseIf DisplayName="If Darvas box strategy" sap:VirtualizedContainerService.HintSize="548,468" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
-      <ui:IfElseIf.ConditionBlocks>
-        <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
-          <ui:IfElseIfBlock BlockType="If" Condition="[Strategy = &quot;Darvas Box&quot;]">
-            <ui:IfElseIfBlock.Then>
-              <Switch x:TypeArguments="x:String" DisplayName="Switch Darvas box TP/SL" Expression="[Trade]" sap:VirtualizedContainerService.HintSize="497,270" sap2010:WorkflowViewState.IdRef="Switch`1_5">
-                <Switch.Default>
-                  <Throw DisplayName="Throw Darvas Box TP/SL unknown trade" Exception="[New Exception(&quot;Darvas Box TP/SL unknown trade : &quot; + Trade)]" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="Throw_2" />
-                </Switch.Default>
-                <x:Null x:Key="Long" />
-                <x:Null x:Key="Short" />
-              </Switch>
-            </ui:IfElseIfBlock.Then>
-          </ui:IfElseIfBlock>
-        </sc:BindingList>
-      </ui:IfElseIf.ConditionBlocks>
+    <Sequence DisplayName="Darvas box strat" sap:VirtualizedContainerService.HintSize="610,919" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-    </ui:IfElseIf>
+      <ui:IfElseIf DisplayName="If Darvas box strategy" sap:VirtualizedContainerService.HintSize="548,540" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
+        <ui:IfElseIf.ConditionBlocks>
+          <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+            <ui:IfElseIfBlock BlockType="If" Condition="[Strategy = &quot;Darvas Box&quot;]">
+              <ui:IfElseIfBlock.Then>
+                <Switch x:TypeArguments="x:String" DisplayName="Switch Darvas box TP/SL" Expression="[Trade]" sap:VirtualizedContainerService.HintSize="497,342" sap2010:WorkflowViewState.IdRef="Switch`1_5">
+                  <Switch.Default>
+                    <Throw DisplayName="Throw Darvas Box TP/SL unknown trade" Exception="[New Exception(&quot;Darvas Box TP/SL unknown trade : &quot; + Trade)]" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="Throw_2" />
+                  </Switch.Default>
+                  <ui:MultipleAssign x:Key="Long" DisplayName="Assign long TP/SL" sap:VirtualizedContainerService.HintSize="431,132" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
+                    <ui:MultipleAssign.AssignOperations>
+                      <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+                          <ui:AssignOperation.To>
+                            <OutArgument x:TypeArguments="x:Double">[SL]</OutArgument>
+                          </ui:AssignOperation.To>
+                          <ui:AssignOperation.Value>
+                            <InArgument x:TypeArguments="x:Double">[BoxTop - ((BoxTop - BoxBottom) / 2)]</InArgument>
+                          </ui:AssignOperation.Value>
+                        </ui:AssignOperation>
+                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
+                          <ui:AssignOperation.To>
+                            <OutArgument x:TypeArguments="x:Double">[TP]</OutArgument>
+                          </ui:AssignOperation.To>
+                          <ui:AssignOperation.Value>
+                            <InArgument x:TypeArguments="x:Double">[BoxTop + ((BoxTop - SL) * CDbl(Config("RiskRatio")))]</InArgument>
+                          </ui:AssignOperation.Value>
+                        </ui:AssignOperation>
+                      </scg:List>
+                    </ui:MultipleAssign.AssignOperations>
+                  </ui:MultipleAssign>
+                  <ui:MultipleAssign x:Key="Short" DisplayName="Assign short TP/SL" sap:VirtualizedContainerService.HintSize="431,132" sap2010:WorkflowViewState.IdRef="MultipleAssign_4">
+                    <ui:MultipleAssign.AssignOperations>
+                      <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
+                          <ui:AssignOperation.To>
+                            <OutArgument x:TypeArguments="x:Double">[SL]</OutArgument>
+                          </ui:AssignOperation.To>
+                          <ui:AssignOperation.Value>
+                            <InArgument x:TypeArguments="x:Double">[BoxBottom + ((BoxTop - BoxBottom) / 2)]</InArgument>
+                          </ui:AssignOperation.Value>
+                        </ui:AssignOperation>
+                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
+                          <ui:AssignOperation.To>
+                            <OutArgument x:TypeArguments="x:Double">[TP]</OutArgument>
+                          </ui:AssignOperation.To>
+                          <ui:AssignOperation.Value>
+                            <InArgument x:TypeArguments="x:Double">[BoxBottom - ((BoxTop - SL) * CDbl(Config("RiskRatio")))]</InArgument>
+                          </ui:AssignOperation.Value>
+                        </ui:AssignOperation>
+                      </scg:List>
+                    </ui:MultipleAssign.AssignOperations>
+                  </ui:MultipleAssign>
+                </Switch>
+              </ui:IfElseIfBlock.Then>
+            </ui:IfElseIfBlock>
+          </sc:BindingList>
+        </ui:IfElseIf.ConditionBlocks>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:IfElseIf>
+      <ui:LogMessage DisplayName="Log TP" sap:VirtualizedContainerService.HintSize="548,94" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;TP=&quot; + TP.ToString]" />
+      <ui:LogMessage DisplayName="Log SL" sap:VirtualizedContainerService.HintSize="548,94" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;SL=&quot; + SL.ToString]" />
+    </Sequence>
   </Sequence>
 </Activity>
