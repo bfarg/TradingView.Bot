@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Test" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="951,893" sap2010:WorkflowViewState.IdRef="Test_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:str="clr-namespace:System.Text.RegularExpressions;assembly=System.Text.RegularExpressions" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Test" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="951,800" sap2010:WorkflowViewState.IdRef="Test_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="122">
       <x:String>GlobalConstantsNamespace</x:String>
@@ -126,9 +126,10 @@
       <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
       <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Test" sap:VirtualizedContainerService.HintSize="697,828" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Test" sap:VirtualizedContainerService.HintSize="450,104" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="Alerts" />
     </Sequence.Variables>
@@ -137,38 +138,5 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetIMAPMailMessages ClientName="{x:Null}" ClientVersion="{x:Null}" FilterExpression="{x:Null}" FilterExpressionCharacterSet="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" DeleteMessages="False" DisplayName="Get IMAP Mail Messages" Email="b.fargeout@outlook.com" EnableSSL="True" sap:VirtualizedContainerService.HintSize="635,25" sap2010:WorkflowViewState.IdRef="GetIMAPMailMessages_1" IgnoreCRL="False" MailFolder="Inbox" MarkAsRead="False" Messages="[Alerts]" OnlyUnreadMessages="False" OrderByDate="NewestFirst" Password="XY65CJ!X.wH,+_%" Port="993" SecureConnection="Auto" Server="outlook.office365.com" Top="30" />
-    <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="For each alert" sap:VirtualizedContainerService.HintSize="635,652" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[Alerts]">
-      <ui:ForEach.Body>
-        <ActivityAction x:TypeArguments="snm:MailMessage">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="Alert" />
-          </ActivityAction.Argument>
-          <ui:IfElseIf DisplayName="If alert mail from TradingView" sap:VirtualizedContainerService.HintSize="599,525" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
-            <ui:IfElseIf.ConditionBlocks>
-              <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
-                <ui:IfElseIfBlock BlockType="If" Condition="[Alert.Subject.StartsWith(&quot;Alert: BTCUSD DB&quot;)]">
-                  <ui:IfElseIfBlock.Then>
-                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,327" sap2010:WorkflowViewState.IdRef="Sequence_2">
-                      <Sequence.Variables>
-                        <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="Match" />
-                      </Sequence.Variables>
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                      <ui:LogMessage DisplayName="Log alert" sap:VirtualizedContainerService.HintSize="388,88" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Warn" Message="[Alert.Subject]" />
-                      <ui:LogMessage DisplayName="Log alert" sap:VirtualizedContainerService.HintSize="388,88" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[Alert.Body]" />
-                    </Sequence>
-                  </ui:IfElseIfBlock.Then>
-                </ui:IfElseIfBlock>
-              </sc:BindingList>
-            </ui:IfElseIf.ConditionBlocks>
-          </ui:IfElseIf>
-        </ActivityAction>
-      </ui:ForEach.Body>
-    </ui:ForEach>
   </Sequence>
 </Activity>

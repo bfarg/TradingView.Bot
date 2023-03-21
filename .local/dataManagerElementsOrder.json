@@ -23,6 +23,7 @@
       "Path": "Main.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "Users&StateMachine_1",
         "Alerts&StateMachine_1",
         "Config&StateMachine_1",
         "SystemException&StateMachine_1"
@@ -54,8 +55,9 @@
         "AlertsPort&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
-        "Config",
-        "Alerts"
+        "Alerts",
+        "Users",
+        "Config"
       ],
       "ConstantsSectionElementsOrder": null,
       "AddedNamespaces": null
@@ -64,6 +66,8 @@
       "Path": "Process.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "Exchange&Sequence_4",
+        "UserID&Sequence_4",
         "SL&Sequence_2",
         "TP&Sequence_2",
         "Price&Sequence_2",
@@ -75,6 +79,7 @@
       ],
       "ArgumentsSectionElementsOrder": [
         "Alerts",
+        "Users",
         "Config"
       ],
       "ConstantsSectionElementsOrder": null,
@@ -152,6 +157,56 @@
         "Quantity",
         "TP",
         "SL"
+      ],
+      "ConstantsSectionElementsOrder": null,
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Scripts/ByBit/ByBit.PostOpenOrder.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Parameters&Sequence_1",
+        "Result&Sequence_1",
+        "TriggerDirection&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "User",
+        "CloseOrder",
+        "Pair",
+        "OrderType",
+        "Side",
+        "Price",
+        "Quantity",
+        "TakeProfit",
+        "StopLoss",
+        "PositionIdx",
+        "CloseOnTrigger",
+        "TimeInForce",
+        "OrderLinkId",
+        "OrderId",
+        "ExecutionTime",
+        "TriggerPrice"
+      ],
+      "ConstantsSectionElementsOrder": null,
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Scripts/ByBit/ByBit.Post.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "StaticURL&Sequence_1",
+        "PublicKey&Sequence_1",
+        "SecretKey&Sequence_1",
+        "Timestamp&Sequence_1",
+        "Signature&Sequence_1",
+        "Json&Sequence_1",
+        "Timeout&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "Endpoint",
+        "User",
+        "Parameters",
+        "Result"
       ],
       "ConstantsSectionElementsOrder": null,
       "AddedNamespaces": null

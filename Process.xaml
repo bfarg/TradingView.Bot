@@ -1,12 +1,13 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:str="clr-namespace:System.Text.RegularExpressions;assembly=System.Text.RegularExpressions" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:str="clr-namespace:System.Text.RegularExpressions;assembly=System.Text.RegularExpressions" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="Config" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="Users" Type="InArgument(sd:DataTable)" />
     <x:Property Name="Alerts" Type="InArgument(scg:List(snm:MailMessage))" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1021,1162</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>951,1561</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Process_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="92">
@@ -118,26 +119,27 @@
       <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
       <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Process" sap:VirtualizedContainerService.HintSize="599,1097" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Process" sap:VirtualizedContainerService.HintSize="791,1496" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="For each alert" sap:VirtualizedContainerService.HintSize="537,986" sap2010:WorkflowViewState.IdRef="ForEach`1_5" Values="[Alerts]">
+    <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="For each alert" sap:VirtualizedContainerService.HintSize="729,1385" sap2010:WorkflowViewState.IdRef="ForEach`1_5" Values="[Alerts]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="snm:MailMessage">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="Alert" />
           </ActivityAction.Argument>
-          <ui:IfElseIf DisplayName="If TradingView alert identifier" sap:VirtualizedContainerService.HintSize="501,859" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
+          <ui:IfElseIf DisplayName="If TradingView alert identifier" sap:VirtualizedContainerService.HintSize="693,1258" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
             <ui:IfElseIf.ConditionBlocks>
               <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
                 <ui:IfElseIfBlock BlockType="If" Condition="[Alert.Subject.Contains(Config(&quot;Alerts.TriggerSubject&quot;))]">
                   <ui:IfElseIfBlock.Then>
-                    <Sequence DisplayName="Process alert from TradingView" sap:VirtualizedContainerService.HintSize="450,661" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                    <Sequence DisplayName="Process alert from TradingView" sap:VirtualizedContainerService.HintSize="589,1060" sap2010:WorkflowViewState.IdRef="Sequence_2">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="Match" />
                         <Variable x:TypeArguments="x:String" Name="Strategy" />
@@ -153,8 +155,8 @@
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:LogMessage DisplayName="Log alert subject" sap:VirtualizedContainerService.HintSize="388,88" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[Alert.Subject]" />
-                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Archive alert" sap:VirtualizedContainerService.HintSize="388,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Scripts\AlertsProcessing.xaml">
+                      <ui:LogMessage DisplayName="Log alert subject" sap:VirtualizedContainerService.HintSize="527,88" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[Alert.Subject]" />
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Archive alert" sap:VirtualizedContainerService.HintSize="527,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Scripts\AlertsProcessing.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
                           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="Config">[Config]</InArgument>
                           <InArgument x:TypeArguments="x:String" x:Key="Action">Archive</InArgument>
@@ -162,7 +164,7 @@
                           <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="Alerts" />
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
-                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Get datas" sap:VirtualizedContainerService.HintSize="388,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Scripts\GetDatas.xaml">
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Get datas" sap:VirtualizedContainerService.HintSize="527,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Scripts\GetDatas.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
                           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="Config">[Config]</InArgument>
                           <InArgument x:TypeArguments="snm:MailMessage" x:Key="Alert">[Alert]</InArgument>
@@ -175,24 +177,80 @@
                           <OutArgument x:TypeArguments="x:Double" x:Key="SL">[SL]</OutArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
-                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Open order" sap:VirtualizedContainerService.HintSize="388,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Scripts\OpenOrder.xaml">
-                        <ui:InvokeWorkflowFile.Arguments>
-                          <InArgument x:TypeArguments="x:String" x:Key="Exchange">
-                            <Literal x:TypeArguments="x:String">ByBit</Literal>
-                          </InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="Username" />
-                          <InArgument x:TypeArguments="x:Boolean" x:Key="CloseOrder" />
-                          <InArgument x:TypeArguments="x:String" x:Key="Pair">
-                            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Pair" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="OrderType" />
-                          <InArgument x:TypeArguments="x:String" x:Key="Decision" />
-                          <InArgument x:TypeArguments="x:String" x:Key="OrderPrice" />
-                          <InArgument x:TypeArguments="x:String" x:Key="Quantity" />
-                          <InArgument x:TypeArguments="x:String" x:Key="TP" />
-                          <InArgument x:TypeArguments="x:String" x:Key="SL" />
-                        </ui:InvokeWorkflowFile.Arguments>
-                      </ui:InvokeWorkflowFile>
+                      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[Users]" DisplayName="For each user" sap:VirtualizedContainerService.HintSize="527,513" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                        <ui:ForEachRow.Body>
+                          <ActivityAction x:TypeArguments="sd:DataRow">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="sd:DataRow" Name="UserData" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="User" sap:VirtualizedContainerService.HintSize="493,397" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="x:String" Name="UserID" />
+                                <Variable x:TypeArguments="x:String" Name="Exchange" />
+                              </Sequence.Variables>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:MultipleAssign DisplayName="Assign user data" sap:VirtualizedContainerService.HintSize="431,132" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+                                <ui:MultipleAssign.AssignOperations>
+                                  <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                                      <ui:AssignOperation.To>
+                                        <OutArgument x:TypeArguments="x:String">[UserID]</OutArgument>
+                                      </ui:AssignOperation.To>
+                                      <ui:AssignOperation.Value>
+                                        <InArgument x:TypeArguments="x:String">[UserData("Id").ToString]</InArgument>
+                                      </ui:AssignOperation.Value>
+                                    </ui:AssignOperation>
+                                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                                      <ui:AssignOperation.To>
+                                        <OutArgument x:TypeArguments="x:String">[Exchange]</OutArgument>
+                                      </ui:AssignOperation.To>
+                                      <ui:AssignOperation.Value>
+                                        <InArgument x:TypeArguments="x:String">[UserData("Exchange").ToString]</InArgument>
+                                      </ui:AssignOperation.Value>
+                                    </ui:AssignOperation>
+                                  </scg:List>
+                                </ui:MultipleAssign.AssignOperations>
+                              </ui:MultipleAssign>
+                              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Open order" sap:VirtualizedContainerService.HintSize="431,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Scripts\OpenOrder.xaml">
+                                <ui:InvokeWorkflowFile.Arguments>
+                                  <InArgument x:TypeArguments="x:String" x:Key="Exchange">
+                                    <Literal x:TypeArguments="x:String">ByBit</Literal>
+                                  </InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="Username">
+                                    <VisualBasicValue x:TypeArguments="x:String" ExpressionText="UserID" />
+                                  </InArgument>
+                                  <InArgument x:TypeArguments="x:Boolean" x:Key="CloseOrder">
+                                    <Literal x:TypeArguments="x:Boolean" />
+                                  </InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="Pair">
+                                    <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Pair" />
+                                  </InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="OrderType">
+                                    <Literal x:TypeArguments="x:String">Market</Literal>
+                                  </InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="Decision">
+                                    <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Trade" />
+                                  </InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="OrderPrice" />
+                                  <InArgument x:TypeArguments="x:String" x:Key="Quantity">
+                                    <Literal x:TypeArguments="x:String">0.02</Literal>
+                                  </InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="TP">
+                                    <VisualBasicValue x:TypeArguments="x:String" ExpressionText="TP.ToString" />
+                                  </InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="SL">
+                                    <VisualBasicValue x:TypeArguments="x:String" ExpressionText="SL.ToString" />
+                                  </InArgument>
+                                </ui:InvokeWorkflowFile.Arguments>
+                              </ui:InvokeWorkflowFile>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:ForEachRow.Body>
+                      </ui:ForEachRow>
                     </Sequence>
                   </ui:IfElseIfBlock.Then>
                 </ui:IfElseIfBlock>

@@ -14,7 +14,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1021,849</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>951,800</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessAlerts_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -106,7 +106,7 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Alerts processing" sap:VirtualizedContainerService.HintSize="588,784" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Alerts processing" sap:VirtualizedContainerService.HintSize="559,460" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="AlertsMail" />
       <Variable x:TypeArguments="ss:SecureString" Name="AlertsPassword" />
@@ -116,7 +116,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetRobotCredential AssetName="Alerts.Cred" CacheStrategy="None" DisplayName="Get alerts cred" sap:VirtualizedContainerService.HintSize="526,143" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[AlertsPassword]" Username="[AlertsMail]">
+    <ui:GetRobotCredential AssetName="Alerts.Cred" CacheStrategy="None" DisplayName="Get alerts cred" sap:VirtualizedContainerService.HintSize="497,143" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[AlertsPassword]" Username="[AlertsMail]">
       <ui:GetRobotCredential.TimeoutMS>
         <InArgument x:TypeArguments="x:Int32" />
       </ui:GetRobotCredential.TimeoutMS>
@@ -127,7 +127,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetRobotCredential>
-    <Switch x:TypeArguments="x:String" DisplayName="Action" Expression="[Action]" sap:VirtualizedContainerService.HintSize="526,490" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+    <Switch x:TypeArguments="x:String" DisplayName="Action" Expression="[Action]" sap:VirtualizedContainerService.HintSize="497,166" sap2010:WorkflowViewState.IdRef="Switch`1_1">
       <ui:GetIMAPMailMessages ClientName="{x:Null}" ClientVersion="{x:Null}" FilterExpression="{x:Null}" FilterExpressionCharacterSet="{x:Null}" Password="{x:Null}" TimeoutMS="{x:Null}" Top="{x:Null}" UseOAuth="{x:Null}" x:Key="Get" DeleteMessages="False" DisplayName="Get alerts" Email="[AlertsMail]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="200,25" sap2010:WorkflowViewState.IdRef="GetIMAPMailMessages_1" IgnoreCRL="False" MailFolder="[Config(&quot;Alerts.Folder&quot;)]" MarkAsRead="True" Messages="[Alerts]" OnlyUnreadMessages="False" OrderByDate="OldestFirst" Port="[CInt(Config(&quot;Alerts.Port&quot;))]" SecureConnection="Auto" SecurePassword="[AlertsPassword]" Server="[Config(&quot;Alerts.Server&quot;)]" />
       <ui:CommentOut x:Key="Archive" sap:VirtualizedContainerService.HintSize="486,278" sap2010:WorkflowViewState.IdRef="CommentOut_1">
         <ui:CommentOut.Body>

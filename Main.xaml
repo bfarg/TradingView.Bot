@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1021,784" sap2010:WorkflowViewState.IdRef="Main2_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="951,800" sap2010:WorkflowViewState.IdRef="Main2_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="44">
       <x:String>GlobalConstantsNamespace</x:String>
@@ -107,6 +107,7 @@
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
       <AssemblyReference>WindowsBase</AssemblyReference>
       <AssemblyReference>WindowsFormsIntegration</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <StateMachine InitialState="{x:Reference __ReferenceID3}" sap2010:Annotation.AnnotationText="TradingView Bot&#xA;Copyright Benjamin Fargeout" DisplayName="Main" sap:VirtualizedContainerService.HintSize="745.5,681" sap2010:WorkflowViewState.IdRef="StateMachine_1">
@@ -120,14 +121,21 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <State x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="Process each pair for all timeframes in parallel FE" DisplayName="Process pairs" sap:VirtualizedContainerService.HintSize="249.5,125.5" sap2010:WorkflowViewState.IdRef="State_4">
+    <State x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="Process each pair for all timeframes in parallel FE" DisplayName="Process pairs" sap:VirtualizedContainerService.HintSize="484,771" sap2010:WorkflowViewState.IdRef="State_4">
       <State.Entry>
         <TryCatch DisplayName="Try Process" sap:VirtualizedContainerService.HintSize="438,347" sap2010:WorkflowViewState.IdRef="TryCatch_3">
           <TryCatch.Try>
             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Process" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_42" UnSafe="False" WorkflowFileName="Process.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="Config">[Config]</InArgument>
-                <InArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="Alerts">[Alerts]</InArgument>
+                <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="Config">
+                  <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:String)" ExpressionText="Config" />
+                </InArgument>
+                <InArgument x:TypeArguments="sd:DataTable" x:Key="Users">
+                  <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="Users" />
+                </InArgument>
+                <InArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="Alerts">
+                  <VisualBasicValue x:TypeArguments="scg:List(snm:MailMessage)" ExpressionText="Alerts" />
+                </InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
           </TryCatch.Try>
@@ -240,8 +248,15 @@
           <TryCatch.Try>
             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Initialization" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_30" UnSafe="False" WorkflowFileName="Scripts\Initialization.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="Config">[Config]</OutArgument>
-                <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="Alerts">[Alerts]</OutArgument>
+                <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="Config">
+                  <VisualBasicReference x:TypeArguments="scg:Dictionary(x:String, x:String)" ExpressionText="Config" />
+                </OutArgument>
+                <OutArgument x:TypeArguments="sd:DataTable" x:Key="Users">
+                  <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="Users" />
+                </OutArgument>
+                <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="Alerts">
+                  <VisualBasicReference x:TypeArguments="scg:List(snm:MailMessage)" ExpressionText="Alerts" />
+                </OutArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
           </TryCatch.Try>
@@ -319,6 +334,7 @@
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="Config" />
       <Variable x:TypeArguments="s:Exception" Name="SystemException" />
       <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="Alerts" />
+      <Variable x:TypeArguments="sd:DataTable" Name="Users" />
     </StateMachine.Variables>
   </StateMachine>
 </Activity>
