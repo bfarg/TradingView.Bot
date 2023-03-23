@@ -12,8 +12,10 @@
       "Path": "Scripts/Test.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "Alerts&Sequence_1",
-        "Match&Sequence_2"
+        "Users&Sequence_1",
+        "APIPublic&Sequence_1",
+        "APISecret&Sequence_1",
+        "Alerts&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": null,
       "ConstantsSectionElementsOrder": null,
@@ -66,8 +68,8 @@
       "Path": "Process.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "Exchange&Sequence_4",
-        "UserID&Sequence_4",
+        "Exchange&Sequence_2",
+        "User&Sequence_2",
         "SL&Sequence_2",
         "TP&Sequence_2",
         "Price&Sequence_2",
@@ -110,7 +112,7 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/GetDatas.xaml",
+      "Path": "Scripts/GetAlertData.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
         "BoxBottom&Sequence_1",
@@ -207,6 +209,78 @@
         "User",
         "Parameters",
         "Result"
+      ],
+      "ConstantsSectionElementsOrder": null,
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Scripts/ByBit/ByBit.Timestamp.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "ByBitServerTimeURL&Sequence_1",
+        "Response&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "StaticURL",
+        "Timestamp"
+      ],
+      "ConstantsSectionElementsOrder": null,
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Scripts/ByBit/ByBit.Signature.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "HashKey&Sequence_1",
+        "PublicParameters&Sequence_1",
+        "Encoding&Sequence_1",
+        "TextBytes&Sequence_1",
+        "HashBytes&Sequence_1",
+        "Hash&Sequence_1",
+        "KeyBytes&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "Credential",
+        "StaticURL",
+        "Timestamp",
+        "SecretKey",
+        "PublicKey",
+        "Signature",
+        "ParametersURL"
+      ],
+      "ConstantsSectionElementsOrder": null,
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Scripts/ByBit/ByBit.RequestHTTP.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "SignType&Sequence_1",
+        "RecWindow&Sequence_1",
+        "Response&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "RequestType",
+        "StaticURL",
+        "RequestURL",
+        "Parameters",
+        "Signature",
+        "PublicKey",
+        "Timestamp",
+        "Result"
+      ],
+      "ConstantsSectionElementsOrder": null,
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Scripts/GetUserData.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": null,
+      "ArgumentsSectionElementsOrder": [
+        "Exchange",
+        "User",
+        "Users",
+        "Alert"
       ],
       "ConstantsSectionElementsOrder": null,
       "AddedNamespaces": null

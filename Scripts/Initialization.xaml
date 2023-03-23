@@ -7,7 +7,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>951,988</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>951,1935</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Config_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="100">
@@ -128,7 +128,7 @@
       <AssemblyReference>NPOI</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Config" sap:VirtualizedContainerService.HintSize="512,923" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Config" sap:VirtualizedContainerService.HintSize="496,1870" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="AlertsFolderReception" />
       <Variable x:TypeArguments="x:Int32" Name="AlertsPort" />
@@ -143,7 +143,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign DisplayName="Init config" sap:VirtualizedContainerService.HintSize="450,83" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign DisplayName="Init config" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[Config]</OutArgument>
       </Assign.To>
@@ -151,164 +151,134 @@
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[New Dictionary(Of String, String)]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[Users]" DisplayName="Read users file" sap:VirtualizedContainerService.HintSize="450,88" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Users" WorkbookPath="Users.xlsx" />
-    <ui:GetRobotAsset AssetName="RiskRatio" CacheStrategy="None" DisplayName="Get risk/reward ratio" sap:VirtualizedContainerService.HintSize="450,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_16">
+    <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[Users]" DisplayName="Read users file" sap:VirtualizedContainerService.HintSize="434,88" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Users" WorkbookPath="Users.xlsx" />
+    <ui:GetRobotAsset AssetName="Alerts.FolderReception" CacheStrategy="None" DisplayName="Get alerts reception folder" sap:VirtualizedContainerService.HintSize="434,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_8">
       <ui:GetRobotAsset.TimeoutMS>
         <InArgument x:TypeArguments="x:Int32" />
       </ui:GetRobotAsset.TimeoutMS>
       <ui:GetRobotAsset.Value>
-        <OutArgument x:TypeArguments="x:String">[Ratio]</OutArgument>
+        <OutArgument x:TypeArguments="x:String">[AlertsFolderReception]</OutArgument>
+      </ui:GetRobotAsset.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotAsset>
+    <ui:GetRobotAsset AssetName="Alerts.FolderArchiving" CacheStrategy="None" DisplayName="Get alerts archiving folder" sap:VirtualizedContainerService.HintSize="434,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_14">
+      <ui:GetRobotAsset.TimeoutMS>
+        <InArgument x:TypeArguments="x:Int32" />
+      </ui:GetRobotAsset.TimeoutMS>
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[AlertsFolderArchiving]</OutArgument>
+      </ui:GetRobotAsset.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotAsset>
+    <ui:GetRobotAsset AssetName="Alerts.Port" CacheStrategy="None" DisplayName="Get alerts port" sap:VirtualizedContainerService.HintSize="434,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_9">
+      <ui:GetRobotAsset.TimeoutMS>
+        <InArgument x:TypeArguments="x:Int32" />
+      </ui:GetRobotAsset.TimeoutMS>
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:Int32">[AlertsPort]</OutArgument>
+      </ui:GetRobotAsset.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotAsset>
+    <ui:GetRobotAsset AssetName="Alerts.Server" CacheStrategy="None" DisplayName="Get alerts server" sap:VirtualizedContainerService.HintSize="434,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_10">
+      <ui:GetRobotAsset.TimeoutMS>
+        <InArgument x:TypeArguments="x:Int32" />
+      </ui:GetRobotAsset.TimeoutMS>
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[AlertsServer]</OutArgument>
+      </ui:GetRobotAsset.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotAsset>
+    <ui:GetRobotAsset AssetName="Alerts.TriggerSubject" CacheStrategy="None" DisplayName="Get alerts subject trigger" sap:VirtualizedContainerService.HintSize="434,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_12">
+      <ui:GetRobotAsset.TimeoutMS>
+        <InArgument x:TypeArguments="x:Int32" />
+      </ui:GetRobotAsset.TimeoutMS>
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[AlertsTriggerSubject]</OutArgument>
       </ui:GetRobotAsset.Value>
     </ui:GetRobotAsset>
-    <ui:MultipleAssign DisplayName="Assign variables to config" sap:VirtualizedContainerService.HintSize="450,101" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
+    <ui:GetRobotAsset AssetName="Alerts.TriggerBody" CacheStrategy="None" DisplayName="Get alerts body trigger" sap:VirtualizedContainerService.HintSize="434,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_13">
+      <ui:GetRobotAsset.TimeoutMS>
+        <InArgument x:TypeArguments="x:Int32" />
+      </ui:GetRobotAsset.TimeoutMS>
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[AlertsTriggerBody]</OutArgument>
+      </ui:GetRobotAsset.Value>
+    </ui:GetRobotAsset>
+    <ui:MultipleAssign DisplayName="Assign alerts variables to config" sap:VirtualizedContainerService.HintSize="434,256" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
-          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_10">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
             <ui:AssignOperation.To>
-              <OutArgument x:TypeArguments="x:String">[Config("RiskRatio")]</OutArgument>
+              <OutArgument x:TypeArguments="x:String">[Config("Alerts.TriggerSubject")]</OutArgument>
             </ui:AssignOperation.To>
             <ui:AssignOperation.Value>
-              <InArgument x:TypeArguments="x:String">[Ratio]</InArgument>
+              <InArgument x:TypeArguments="x:String">[AlertsTriggerSubject]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Config("Alerts.TriggerBody")]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[AlertsTriggerBody]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Config("Alerts.Folder")]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[AlertsFolderReception]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Config("Alerts.Port")]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[AlertsPort.ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Config("Alerts.Server")]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[AlertsServer]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Config("Alerts.FolderArchiving")]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[AlertsFolderArchiving]</InArgument>
             </ui:AssignOperation.Value>
           </ui:AssignOperation>
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <Sequence DisplayName="Alerts assets" sap:VirtualizedContainerService.HintSize="450,83" sap2010:WorkflowViewState.IdRef="Sequence_5">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <ui:GetRobotAsset AssetName="Alerts.FolderReception" CacheStrategy="None" DisplayName="Get alerts reception folder" sap:VirtualizedContainerService.HintSize="431,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_8">
-        <ui:GetRobotAsset.TimeoutMS>
-          <InArgument x:TypeArguments="x:Int32" />
-        </ui:GetRobotAsset.TimeoutMS>
-        <ui:GetRobotAsset.Value>
-          <OutArgument x:TypeArguments="x:String">[AlertsFolderReception]</OutArgument>
-        </ui:GetRobotAsset.Value>
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </ui:GetRobotAsset>
-      <ui:GetRobotAsset AssetName="Alerts.FolderArchiving" CacheStrategy="None" DisplayName="Get alerts archiving folder" sap:VirtualizedContainerService.HintSize="431,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_14">
-        <ui:GetRobotAsset.TimeoutMS>
-          <InArgument x:TypeArguments="x:Int32" />
-        </ui:GetRobotAsset.TimeoutMS>
-        <ui:GetRobotAsset.Value>
-          <OutArgument x:TypeArguments="x:String">[AlertsFolderArchiving]</OutArgument>
-        </ui:GetRobotAsset.Value>
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </ui:GetRobotAsset>
-      <ui:GetRobotAsset AssetName="Alerts.Port" CacheStrategy="None" DisplayName="Get alerts port" sap:VirtualizedContainerService.HintSize="431,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_9">
-        <ui:GetRobotAsset.TimeoutMS>
-          <InArgument x:TypeArguments="x:Int32" />
-        </ui:GetRobotAsset.TimeoutMS>
-        <ui:GetRobotAsset.Value>
-          <OutArgument x:TypeArguments="x:Int32">[AlertsPort]</OutArgument>
-        </ui:GetRobotAsset.Value>
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </ui:GetRobotAsset>
-      <ui:GetRobotAsset AssetName="Alerts.Server" CacheStrategy="None" DisplayName="Get alerts server" sap:VirtualizedContainerService.HintSize="431,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_10">
-        <ui:GetRobotAsset.TimeoutMS>
-          <InArgument x:TypeArguments="x:Int32" />
-        </ui:GetRobotAsset.TimeoutMS>
-        <ui:GetRobotAsset.Value>
-          <OutArgument x:TypeArguments="x:String">[AlertsServer]</OutArgument>
-        </ui:GetRobotAsset.Value>
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </ui:GetRobotAsset>
-      <ui:GetRobotAsset AssetName="Alerts.TriggerSubject" CacheStrategy="None" DisplayName="Get alerts subject trigger" sap:VirtualizedContainerService.HintSize="431,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_12">
-        <ui:GetRobotAsset.TimeoutMS>
-          <InArgument x:TypeArguments="x:Int32" />
-        </ui:GetRobotAsset.TimeoutMS>
-        <ui:GetRobotAsset.Value>
-          <OutArgument x:TypeArguments="x:String">[AlertsTriggerSubject]</OutArgument>
-        </ui:GetRobotAsset.Value>
-      </ui:GetRobotAsset>
-      <ui:GetRobotAsset AssetName="Alerts.TriggerBody" CacheStrategy="None" DisplayName="Get alerts body trigger" sap:VirtualizedContainerService.HintSize="431,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_13">
-        <ui:GetRobotAsset.TimeoutMS>
-          <InArgument x:TypeArguments="x:Int32" />
-        </ui:GetRobotAsset.TimeoutMS>
-        <ui:GetRobotAsset.Value>
-          <OutArgument x:TypeArguments="x:String">[AlertsTriggerBody]</OutArgument>
-        </ui:GetRobotAsset.Value>
-      </ui:GetRobotAsset>
-      <ui:MultipleAssign DisplayName="Assign alerts variables to config" sap:VirtualizedContainerService.HintSize="431,256" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
-        <ui:MultipleAssign.AssignOperations>
-          <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
-            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
-              <ui:AssignOperation.To>
-                <OutArgument x:TypeArguments="x:String">[Config("Alerts.TriggerSubject")]</OutArgument>
-              </ui:AssignOperation.To>
-              <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="x:String">[AlertsTriggerSubject]</InArgument>
-              </ui:AssignOperation.Value>
-            </ui:AssignOperation>
-            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
-              <ui:AssignOperation.To>
-                <OutArgument x:TypeArguments="x:String">[Config("Alerts.TriggerBody")]</OutArgument>
-              </ui:AssignOperation.To>
-              <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="x:String">[AlertsTriggerBody]</InArgument>
-              </ui:AssignOperation.Value>
-            </ui:AssignOperation>
-            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
-              <ui:AssignOperation.To>
-                <OutArgument x:TypeArguments="x:String">[Config("Alerts.Folder")]</OutArgument>
-              </ui:AssignOperation.To>
-              <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="x:String">[AlertsFolderReception]</InArgument>
-              </ui:AssignOperation.Value>
-            </ui:AssignOperation>
-            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
-              <ui:AssignOperation.To>
-                <OutArgument x:TypeArguments="x:String">[Config("Alerts.Port")]</OutArgument>
-              </ui:AssignOperation.To>
-              <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="x:String">[AlertsPort.ToString]</InArgument>
-              </ui:AssignOperation.Value>
-            </ui:AssignOperation>
-            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
-              <ui:AssignOperation.To>
-                <OutArgument x:TypeArguments="x:String">[Config("Alerts.Server")]</OutArgument>
-              </ui:AssignOperation.To>
-              <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="x:String">[AlertsServer]</InArgument>
-              </ui:AssignOperation.Value>
-            </ui:AssignOperation>
-            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
-              <ui:AssignOperation.To>
-                <OutArgument x:TypeArguments="x:String">[Config("Alerts.FolderArchiving")]</OutArgument>
-              </ui:AssignOperation.To>
-              <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="x:String">[AlertsFolderArchiving]</InArgument>
-              </ui:AssignOperation.Value>
-            </ui:AssignOperation>
-          </scg:List>
-        </ui:MultipleAssign.AssignOperations>
-      </ui:MultipleAssign>
-    </Sequence>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Alerts processing" sap:VirtualizedContainerService.HintSize="450,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Scripts\AlertsProcessing.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Alerts processing" sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Scripts\AlertsProcessing.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="Config">[Config]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="Action">Get</InArgument>

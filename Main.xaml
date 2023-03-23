@@ -125,17 +125,11 @@
       <State.Entry>
         <TryCatch DisplayName="Try Process" sap:VirtualizedContainerService.HintSize="438,347" sap2010:WorkflowViewState.IdRef="TryCatch_3">
           <TryCatch.Try>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Process" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_42" UnSafe="False" WorkflowFileName="Process.xaml">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Process" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_42" Level="Info" LogEntry="OnlyInvocation" LogExit="OnlySuccessfulReturn" UnSafe="False" WorkflowFileName="Process.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="Config">
-                  <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:String)" ExpressionText="Config" />
-                </InArgument>
-                <InArgument x:TypeArguments="sd:DataTable" x:Key="Users">
-                  <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="Users" />
-                </InArgument>
-                <InArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="Alerts">
-                  <VisualBasicValue x:TypeArguments="scg:List(snm:MailMessage)" ExpressionText="Alerts" />
-                </InArgument>
+                <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="Config">[Config]</InArgument>
+                <InArgument x:TypeArguments="sd:DataTable" x:Key="Users">[Users]</InArgument>
+                <InArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="Alerts">[Alerts]</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
           </TryCatch.Try>
@@ -246,17 +240,11 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <TryCatch.Try>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Initialization" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_30" UnSafe="False" WorkflowFileName="Scripts\Initialization.xaml">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Initialization" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_30" Level="Info" LogEntry="OnlyInvocation" LogExit="OnlySuccessfulReturn" UnSafe="False" WorkflowFileName="Scripts\Initialization.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="Config">
-                  <VisualBasicReference x:TypeArguments="scg:Dictionary(x:String, x:String)" ExpressionText="Config" />
-                </OutArgument>
-                <OutArgument x:TypeArguments="sd:DataTable" x:Key="Users">
-                  <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="Users" />
-                </OutArgument>
-                <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="Alerts">
-                  <VisualBasicReference x:TypeArguments="scg:List(snm:MailMessage)" ExpressionText="Alerts" />
-                </OutArgument>
+                <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="Config">[Config]</OutArgument>
+                <OutArgument x:TypeArguments="sd:DataTable" x:Key="Users">[Users]</OutArgument>
+                <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="Alerts">[Alerts]</OutArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
           </TryCatch.Try>

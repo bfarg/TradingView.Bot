@@ -3,6 +3,7 @@
   "description": "TradingView trading bot",
   "main": "Main.xaml",
   "dependencies": {
+    "UiPath.Database.Activities": "[1.7.1]",
     "UiPath.Excel.Activities": "[2.16.2]",
     "UiPath.Mail.Activities": "1.18.2",
     "UiPath.System.Activities": "22.10.4",
