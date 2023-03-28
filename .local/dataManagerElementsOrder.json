@@ -9,45 +9,29 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/Test.xaml",
-      "SortBy": 0,
-      "VariablesSectionElementsOrder": [
-        "Users&Sequence_1",
-        "APIPublic&Sequence_1",
-        "APISecret&Sequence_1",
-        "Alerts&Sequence_1"
-      ],
-      "ArgumentsSectionElementsOrder": null,
-      "ConstantsSectionElementsOrder": null,
-      "AddedNamespaces": null
-    },
-    {
       "Path": "Main.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "Database&StateMachine_1",
         "Users&StateMachine_1",
         "Alerts&StateMachine_1",
         "Config&StateMachine_1",
         "SystemException&StateMachine_1"
       ],
       "ArgumentsSectionElementsOrder": [
-        "Alert",
-        "Strategy",
-        "Trade",
-        "Pair",
-        "Interval",
-        "Price",
-        "TP",
-        "SL",
-        "Config"
+        "Config",
+        "Users",
+        "Alerts"
       ],
       "ConstantsSectionElementsOrder": null,
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/Initialization.xaml",
+      "Path": "Scripts/1.Initialization.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "DatabaseCred&Sequence_1",
+        "Risk&Sequence_1",
         "Ratio&Sequence_1",
         "AlertsFolderArchiving&Sequence_1",
         "AlertsFolderReception&Sequence_1",
@@ -57,8 +41,9 @@
         "AlertsPort&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
-        "Alerts",
         "Users",
+        "Alerts",
+        "Database",
         "Config"
       ],
       "ConstantsSectionElementsOrder": null,
@@ -68,6 +53,7 @@
       "Path": "Process.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "Trades&Sequence_2",
         "Exchange&Sequence_2",
         "User&Sequence_2",
         "SL&Sequence_2",
@@ -80,15 +66,16 @@
         "Strategy&Sequence_2"
       ],
       "ArgumentsSectionElementsOrder": [
-        "Alerts",
         "Users",
+        "Alerts",
+        "Database",
         "Config"
       ],
       "ConstantsSectionElementsOrder": null,
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/AlertsProcessing.xaml",
+      "Path": "Scripts/2.AlertsProcessing.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
         "AlertsMail&Sequence_1",
@@ -112,7 +99,7 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/GetAlertData.xaml",
+      "Path": "Scripts/3.GetAlertData.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
         "BoxBottom&Sequence_1",
@@ -123,6 +110,7 @@
         "Datas&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
+        "User",
         "SL",
         "TP",
         "Price",
@@ -145,7 +133,7 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/OpenOrder.xaml",
+      "Path": "Scripts/5.OpenOrder.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": null,
       "ArgumentsSectionElementsOrder": [
@@ -273,15 +261,44 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/GetUserData.xaml",
+      "Path": "Scripts/4.GetUserData.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": null,
       "ArgumentsSectionElementsOrder": [
+        "SecretAPI",
+        "PublicAPI",
         "Exchange",
-        "User",
         "Users",
-        "Alert"
+        "User"
       ],
+      "ConstantsSectionElementsOrder": null,
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Scripts/6.Reporting.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": null,
+      "ArgumentsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": null,
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Scripts/Test.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Database&Sequence_1",
+        "DatabaseCred&Sequence_1",
+        "Trades&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": null,
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Scripts/3.GetTrade.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": null,
+      "ArgumentsSectionElementsOrder": null,
       "ConstantsSectionElementsOrder": null,
       "AddedNamespaces": null
     }
