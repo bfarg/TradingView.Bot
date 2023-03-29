@@ -1,10 +1,10 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="GetUserData" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="GetUserData" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="Users" Type="InArgument(sd:DataTable)" />
-    <x:Property Name="User" Type="InArgument(x:String)" />
+    <x:Property Name="UserID" Type="InArgument(x:String)" />
     <x:Property Name="Exchange" Type="OutArgument(x:String)" />
     <x:Property Name="PublicAPI" Type="OutArgument(x:String)" />
-    <x:Property Name="SecretAPI" Type="OutArgument(x:String)" />
+    <x:Property Name="SecretAPI" Type="OutArgument(ss:SecureString)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -46,6 +46,7 @@
       <x:String>System.Security</x:String>
       <x:String>UiPath.Database</x:String>
       <x:String>UiPath.Database.Activities</x:String>
+      <x:String>System.Net</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -104,9 +105,17 @@
       <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
       <AssemblyReference>UiPath.Database</AssemblyReference>
       <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>System.Net.Primitives</AssemblyReference>
+      <AssemblyReference>System.Net.HttpListener</AssemblyReference>
+      <AssemblyReference>System.Net.WebProxy</AssemblyReference>
+      <AssemblyReference>System.Net.NameResolution</AssemblyReference>
+      <AssemblyReference>System.Net.WebClient</AssemblyReference>
+      <AssemblyReference>System.Net.Requests</AssemblyReference>
+      <AssemblyReference>System.Net.ServicePoint</AssemblyReference>
+      <AssemblyReference>System.Net.WebHeaderCollection</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Get user data" sap:VirtualizedContainerService.HintSize="493,477" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Get user data" sap:VirtualizedContainerService.HintSize="493,611" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -117,10 +126,10 @@
         <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
           <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
             <ui:FilterOperationArgument.Column>
-              <InArgument x:TypeArguments="x:String">["Users"]</InArgument>
+              <InArgument x:TypeArguments="x:String">["ID"]</InArgument>
             </ui:FilterOperationArgument.Column>
             <ui:FilterOperationArgument.Operand>
-              <InArgument x:TypeArguments="x:String">[User]</InArgument>
+              <InArgument x:TypeArguments="x:String">[UserID]</InArgument>
             </ui:FilterOperationArgument.Operand>
           </ui:FilterOperationArgument>
         </scg:List>
@@ -133,7 +142,7 @@
     </ui:FilterDataTable>
     <ui:MultipleAssign DisplayName="Assign user data" sap:VirtualizedContainerService.HintSize="431,163" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
       <ui:MultipleAssign.AssignOperations>
-        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
             <ui:AssignOperation.To>
               <OutArgument x:TypeArguments="x:String">[Exchange]</OutArgument>
@@ -152,14 +161,15 @@
           </ui:AssignOperation>
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
             <ui:AssignOperation.To>
-              <OutArgument x:TypeArguments="x:String">[SecretAPI]</OutArgument>
+              <OutArgument x:TypeArguments="ss:SecureString">[SecretAPI]</OutArgument>
             </ui:AssignOperation.To>
             <ui:AssignOperation.Value>
-              <InArgument x:TypeArguments="x:String">[Users(0)("API secret").ToString]</InArgument>
+              <InArgument x:TypeArguments="ss:SecureString">[New Net.NetworkCredential(String.Empty, Users(0)("API secret").ToString).SecurePassword]</InArgument>
             </ui:AssignOperation.Value>
           </ui:AssignOperation>
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="431,94" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[UserID + &quot; / &quot; + Exchange]" />
   </Sequence>
 </Activity>

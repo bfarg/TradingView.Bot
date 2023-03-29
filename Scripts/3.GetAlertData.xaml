@@ -9,7 +9,7 @@
     <x:Property Name="Price" Type="OutArgument(x:Double)" />
     <x:Property Name="TP" Type="OutArgument(x:Double)" />
     <x:Property Name="SL" Type="OutArgument(x:Double)" />
-    <x:Property Name="User" Type="OutArgument(x:String)" />
+    <x:Property Name="UserID" Type="OutArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -250,7 +250,7 @@
               <x:Null x:Key="BOX.CLOSE" />
               <Assign x:Key="USER" DisplayName="Assign user" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_13">
                 <Assign.To>
-                  <OutArgument x:TypeArguments="x:String">[User]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String">[UserID]</OutArgument>
                 </Assign.To>
                 <Assign.Value>
                   <InArgument x:TypeArguments="x:String">[Value]</InArgument>

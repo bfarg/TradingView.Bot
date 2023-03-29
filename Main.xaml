@@ -123,7 +123,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <State x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="Process each pair for all timeframes in parallel FE" DisplayName="Process pairs" sap:VirtualizedContainerService.HintSize="484,771" sap2010:WorkflowViewState.IdRef="State_4">
+    <State x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="Process each pair for all timeframes in parallel FE" DisplayName="Process pairs" sap:VirtualizedContainerService.HintSize="249.5,125.5" sap2010:WorkflowViewState.IdRef="State_4">
       <State.Entry>
         <TryCatch DisplayName="Try Process" sap:VirtualizedContainerService.HintSize="438,347" sap2010:WorkflowViewState.IdRef="TryCatch_3">
           <TryCatch.Try>
@@ -140,6 +140,9 @@
                 </InArgument>
                 <InArgument x:TypeArguments="sd:DataTable" x:Key="Users">
                   <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="Users" />
+                </InArgument>
+                <InArgument x:TypeArguments="sd:DataTable" x:Key="Trades">
+                  <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="Trades" />
                 </InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
@@ -241,7 +244,7 @@
       </State.Transitions>
     </State>
     <x:Reference>__ReferenceID0</x:Reference>
-    <State x:Name="__ReferenceID3" sap2010:Annotation.AnnotationText="Get config, wait time to start &amp; init main variables" DisplayName="Initialization" sap:VirtualizedContainerService.HintSize="254,106" sap2010:WorkflowViewState.IdRef="State_2">
+    <State x:Name="__ReferenceID3" sap2010:Annotation.AnnotationText="Get config, wait time to start &amp; init main variables" DisplayName="Initialization" sap:VirtualizedContainerService.HintSize="484,771" sap2010:WorkflowViewState.IdRef="State_2">
       <State.Entry>
         <TryCatch DisplayName="Try Initialization" sap:VirtualizedContainerService.HintSize="438,347" sap2010:WorkflowViewState.IdRef="TryCatch_2">
           <sap:WorkflowViewStateService.ViewState>
@@ -251,7 +254,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <TryCatch.Try>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Initialization" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_30" Level="Info" LogEntry="OnlyInvocation" LogExit="OnlySuccessfulReturn" UnSafe="False" WorkflowFileName="Scripts\1.Initialization.xaml">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Initialization" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_30" UnSafe="False" WorkflowFileName="Scripts\1.Initialization.xaml">
               <ui:InvokeWorkflowFile.Arguments>
                 <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="Config">
                   <VisualBasicReference x:TypeArguments="scg:Dictionary(x:String, x:String)" ExpressionText="Config" />
@@ -264,6 +267,9 @@
                 </OutArgument>
                 <OutArgument x:TypeArguments="sd:DataTable" x:Key="Users">
                   <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="Users" />
+                </OutArgument>
+                <OutArgument x:TypeArguments="sd:DataTable" x:Key="Trades">
+                  <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="Trades" />
                 </OutArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
@@ -344,6 +350,7 @@
       <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="Alerts" />
       <Variable x:TypeArguments="sd:DataTable" Name="Users" />
       <Variable x:TypeArguments="ui:DatabaseConnection" Name="Database" />
+      <Variable x:TypeArguments="sd:DataTable" Name="Trades" />
     </StateMachine.Variables>
   </StateMachine>
 </Activity>

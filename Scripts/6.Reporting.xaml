@@ -37,6 +37,9 @@
       <x:String>System.ComponentModel</x:String>
       <x:String>System.Runtime.Serialization</x:String>
       <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Database</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Database.Activities</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -73,6 +76,10 @@
       <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
       <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.Database</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="Reporting" sap:VirtualizedContainerService.HintSize="450,104" sap2010:WorkflowViewState.IdRef="Sequence_1">

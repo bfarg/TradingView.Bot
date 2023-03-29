@@ -4,11 +4,12 @@
     <x:Property Name="Database" Type="OutArgument(ui:DatabaseConnection)" />
     <x:Property Name="Alerts" Type="OutArgument(scg:List(snm:MailMessage))" />
     <x:Property Name="Users" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="Trades" Type="OutArgument(sd:DataTable)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1021,784</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1021,1059</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Config_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="100">
@@ -133,7 +134,7 @@
       <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Config" sap:VirtualizedContainerService.HintSize="512,577" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Config" sap:VirtualizedContainerService.HintSize="512,994" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="AlertsFolderReception" />
       <Variable x:TypeArguments="x:Int32" Name="AlertsPort" />
@@ -319,19 +320,26 @@
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ui:ExecuteQuery.Parameters>
     </ui:ExecuteQuery>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Get alerts" sap:VirtualizedContainerService.HintSize="450,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Scripts\2.AlertsProcessing.xaml">
+    <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[Trades]" DisplayName="Get trades" ExistingDbConnection="[Database]" sap:VirtualizedContainerService.HintSize="450,89" sap2010:WorkflowViewState.IdRef="ExecuteQuery_2" Sql="SELECT * FROM [TradingViewBot.Reporting.Dev]">
+      <ui:ExecuteQuery.Parameters>
+        <scg:Dictionary x:TypeArguments="x:String, Argument" />
+      </ui:ExecuteQuery.Parameters>
+    </ui:ExecuteQuery>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Update trades" sap:VirtualizedContainerService.HintSize="450,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Scripts\2.UpdateTrades.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="Config">
-          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:String)" ExpressionText="Config" />
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="Trades">
+          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="Trades" />
         </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="Action">
-          <Literal x:TypeArguments="x:String">Get</Literal>
-        </InArgument>
-        <InArgument x:TypeArguments="snm:MailMessage" x:Key="Alert" />
-        <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="Alerts">
-          <VisualBasicReference x:TypeArguments="scg:List(snm:MailMessage)" ExpressionText="Alerts" />
-        </OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Get alerts" sap:VirtualizedContainerService.HintSize="450,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Scripts\3.AlertsProcessing.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="Config">[Config]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Action">Get</InArgument>
+        <InArgument x:TypeArguments="snm:MailMessage" x:Key="Alert" />
+        <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="Alerts">[Alerts]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:LogMessage DisplayName="Log init successful" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;[1.Initialisation] Successful&quot;]" />
   </Sequence>
 </Activity>
