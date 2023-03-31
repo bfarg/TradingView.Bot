@@ -3,9 +3,9 @@
     {
       "Path": null,
       "SortBy": 0,
-      "VariablesSectionElementsOrder": null,
+      "VariablesSectionElementsOrder": [],
       "ArgumentsSectionElementsOrder": null,
-      "ConstantsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
     {
@@ -19,14 +19,8 @@
         "Config&StateMachine_1",
         "SystemException&StateMachine_1"
       ],
-      "ArgumentsSectionElementsOrder": [
-        "Trades",
-        "Database",
-        "Config",
-        "Users",
-        "Alerts"
-      ],
-      "ConstantsSectionElementsOrder": null,
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
     {
@@ -50,7 +44,7 @@
         "Database",
         "Config"
       ],
-      "ConstantsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
     {
@@ -78,11 +72,11 @@
         "Database",
         "Config"
       ],
-      "ConstantsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/3.AlertsProcessing.xaml",
+      "Path": "Scripts/5.AlertsProcessing.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
         "AlertsMail&Sequence_1",
@@ -94,7 +88,7 @@
         "Config",
         "Action"
       ],
-      "ConstantsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
     {
@@ -268,20 +262,6 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/4.GetUserData.xaml",
-      "SortBy": 0,
-      "VariablesSectionElementsOrder": null,
-      "ArgumentsSectionElementsOrder": [
-        "UserID",
-        "Exchange",
-        "PublicAPI",
-        "SecretAPI",
-        "Users"
-      ],
-      "ConstantsSectionElementsOrder": null,
-      "AddedNamespaces": null
-    },
-    {
       "Path": "Scripts/6.Reporting.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": null,
@@ -297,8 +277,8 @@
         "DatabaseCred&Sequence_1",
         "Trades&Sequence_1"
       ],
-      "ArgumentsSectionElementsOrder": null,
-      "ConstantsSectionElementsOrder": null,
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
     {
@@ -312,17 +292,59 @@
     {
       "Path": "Scripts/2.UpdateTrades.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": null,
-      "ArgumentsSectionElementsOrder": null,
-      "ConstantsSectionElementsOrder": null,
+      "VariablesSectionElementsOrder": [
+        "SecretAPI&Sequence_2",
+        "PublicAPI&Sequence_2",
+        "Exchange&Sequence_2",
+        "UserID&Sequence_2",
+        "OpenedTrades&Sequence_1",
+        "TradeID&Sequence_2"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "Users",
+        "Trades"
+      ],
+      "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/2.UpdateTrades.xaml",
+      "Path": "Scripts/3.GetUserData.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": null,
-      "ArgumentsSectionElementsOrder": null,
-      "ConstantsSectionElementsOrder": null,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [
+        "Users",
+        "UserID",
+        "Exchange",
+        "PublicAPI",
+        "SecretAPI"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Scripts/4.GetOpenOrders.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [
+        "Exchange",
+        "User"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Scripts/ByBit/ByBit.GetOpenedOrders.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Parameters&Sequence_1",
+        "Result&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "User",
+        "Pair",
+        "OrderId"
+      ],
+      "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     }
   ]
