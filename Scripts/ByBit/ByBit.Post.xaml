@@ -1,20 +1,24 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="ByBit_PlaceOrder" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="Endpoint" Type="InArgument(x:String)" />
-    <x:Property Name="User" Type="InArgument(x:String)" />
     <x:Property Name="Parameters" Type="InArgument(scg:Dictionary(x:String, x:String))" />
     <x:Property Name="Result" Type="OutArgument(njl:JObject)" />
+    <x:Property Name="PublicKey" Type="InArgument(x:String)" />
+    <x:Property Name="SecretKey" Type="InArgument(ss:SecureString)" />
   </x:Members>
   <this:ByBit_PlaceOrder.Endpoint>
     <InArgument x:TypeArguments="x:String" />
   </this:ByBit_PlaceOrder.Endpoint>
-  <this:ByBit_PlaceOrder.User>
+  <this:ByBit_PlaceOrder.PublicKey>
     <InArgument x:TypeArguments="x:String" />
-  </this:ByBit_PlaceOrder.User>
+  </this:ByBit_PlaceOrder.PublicKey>
+  <this:ByBit_PlaceOrder.SecretKey>
+    <InArgument x:TypeArguments="ss:SecureString" />
+  </this:ByBit_PlaceOrder.SecretKey>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1642,1280</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1268,1280</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ByBit_PlaceOrder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="39">
@@ -130,11 +134,9 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ByBit Post request" sap:VirtualizedContainerService.HintSize="1652,1215" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ByBit Post request" sap:VirtualizedContainerService.HintSize="1278,1215" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="StaticURL" />
-      <Variable x:TypeArguments="x:String" Name="PublicKey" />
-      <Variable x:TypeArguments="ss:SecureString" Name="SecretKey" />
       <Variable x:TypeArguments="x:String" Name="Timestamp" />
       <Variable x:TypeArguments="x:String" Name="Signature" />
       <Variable x:TypeArguments="njl:JObject" Default="[New JObject]" Name="Json" />
@@ -145,7 +147,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Parallel DisplayName="Assets ByBit Place order" sap:VirtualizedContainerService.HintSize="1590,190" sap2010:WorkflowViewState.IdRef="Parallel_1">
+    <Parallel DisplayName="Assets ByBit Place order" sap:VirtualizedContainerService.HintSize="1216,190" sap2010:WorkflowViewState.IdRef="Parallel_1">
       <ui:GetRobotAsset AssetName="ByBit.Static" CacheStrategy="None" DisplayName="Get ByBit static" sap:VirtualizedContainerService.HintSize="334,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
         <ui:GetRobotAsset.TimeoutMS>
           <InArgument x:TypeArguments="x:Int32" />
@@ -188,25 +190,14 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:GetRobotAsset>
-      <ui:GetRobotCredential AssetName="[User]" CacheStrategy="None" DisplayName="Get User API Keys" FolderPath="Trading/Users" sap:VirtualizedContainerService.HintSize="334,143" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[SecretKey]" Username="[PublicKey]">
-        <ui:GetRobotCredential.TimeoutMS>
-          <InArgument x:TypeArguments="x:Int32" />
-        </ui:GetRobotCredential.TimeoutMS>
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </ui:GetRobotCredential>
     </Parallel>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ByBit Timestamp" sap:VirtualizedContainerService.HintSize="1590,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Scripts\ByBit\ByBit.Timestamp.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ByBit Timestamp" sap:VirtualizedContainerService.HintSize="1216,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Scripts\ByBit\ByBit.Timestamp.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="StaticURL">[StaticURL]</InArgument>
         <OutArgument x:TypeArguments="x:String" x:Key="Timestamp">[Timestamp]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <Sequence DisplayName="Build parameters url" sap:VirtualizedContainerService.HintSize="1590,83" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="Build parameters url" sap:VirtualizedContainerService.HintSize="1216,83" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -241,30 +232,81 @@
         </ui:ForEach.Body>
       </ui:ForEach>
     </Sequence>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ByBit Signature" sap:VirtualizedContainerService.HintSize="1590,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Scripts\ByBit\ByBit.Signature.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ByBit Signature" sap:VirtualizedContainerService.HintSize="1216,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Scripts\ByBit\ByBit.Signature.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="Credential">[User]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="StaticURL">[StaticURL]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="Timestamp">[Timestamp]</InArgument>
-        <InArgument x:TypeArguments="ss:SecureString" x:Key="SecretKey">[SecretKey]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="PublicKey">[PublicKey]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="ParametersURL">[Timestamp + PublicKey + Timeout + Json.ToString]</InArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="Signature">[Signature]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="StaticURL">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="StaticURL">
+            <VisualBasicValue.Result>
+              <OutArgument x:TypeArguments="x:String" />
+            </VisualBasicValue.Result>
+          </VisualBasicValue>
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Timestamp">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Timestamp">
+            <VisualBasicValue.Result>
+              <OutArgument x:TypeArguments="x:String" />
+            </VisualBasicValue.Result>
+          </VisualBasicValue>
+        </InArgument>
+        <InArgument x:TypeArguments="ss:SecureString" x:Key="SecretKey">
+          <VisualBasicValue x:TypeArguments="ss:SecureString" ExpressionText="SecretKey">
+            <VisualBasicValue.Result>
+              <OutArgument x:TypeArguments="ss:SecureString" />
+            </VisualBasicValue.Result>
+          </VisualBasicValue>
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="PublicKey">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="PublicKey">
+            <VisualBasicValue.Result>
+              <OutArgument x:TypeArguments="x:String" />
+            </VisualBasicValue.Result>
+          </VisualBasicValue>
+        </InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="Signature">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="Signature">
+            <VisualBasicReference.Result>
+              <OutArgument x:TypeArguments="Location(x:String)" />
+            </VisualBasicReference.Result>
+          </VisualBasicReference>
+        </OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="ParametersURL">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Timestamp + PublicKey + Timeout + Json.ToString">
+            <VisualBasicValue.Result>
+              <OutArgument x:TypeArguments="x:String" />
+            </VisualBasicValue.Result>
+          </VisualBasicValue>
+        </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ByBit HTTP Request" sap:VirtualizedContainerService.HintSize="1590,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Scripts\ByBit\ByBit.RequestHTTP.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ByBit HTTP Request" sap:VirtualizedContainerService.HintSize="1216,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Scripts\ByBit\ByBit.RequestHTTP.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="RequestType">POST</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="StaticURL">[StaticURL]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="RequestURL">[Endpoint]</InArgument>
-        <InArgument x:TypeArguments="njl:JObject" x:Key="Parameters">[Json]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="Signature">[Signature]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="PublicKey">[PublicKey]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="Timestamp">[Timestamp]</InArgument>
-        <OutArgument x:TypeArguments="njl:JObject" x:Key="Result">[Result]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="RequestType">
+          <Literal x:TypeArguments="x:String">POST</Literal>
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="StaticURL">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="StaticURL" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="RequestURL">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Endpoint" />
+        </InArgument>
+        <InArgument x:TypeArguments="njl:JObject" x:Key="Parameters">
+          <VisualBasicValue x:TypeArguments="njl:JObject" ExpressionText="Json" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Signature">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Signature" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="PublicKey">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="PublicKey" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Timestamp">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Timestamp" />
+        </InArgument>
+        <OutArgument x:TypeArguments="njl:JObject" x:Key="Result">
+          <VisualBasicReference x:TypeArguments="njl:JObject" ExpressionText="Result" />
+        </OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:IfElseIf DisplayName="If RetMsg is not OK" sap:VirtualizedContainerService.HintSize="1590,289" sap2010:WorkflowViewState.IdRef="IfElseIf_3">
+    <ui:IfElseIf DisplayName="If RetMsg is not OK" sap:VirtualizedContainerService.HintSize="1216,289" sap2010:WorkflowViewState.IdRef="IfElseIf_3">
       <ui:IfElseIf.ConditionBlocks>
         <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
           <ui:IfElseIfBlock BlockType="If" Condition="[Result(&quot;retMsg&quot;).ToString &lt;&gt; &quot;OK&quot;]">

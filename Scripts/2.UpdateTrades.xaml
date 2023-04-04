@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>951,1182</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1021,1253</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>UpdateTrades_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -85,9 +85,10 @@
       <AssemblyReference>System.Private.Uri</AssemblyReference>
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
       <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Update trades" sap:VirtualizedContainerService.HintSize="589,1117" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Update trades" sap:VirtualizedContainerService.HintSize="589,1148" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="OpenedTrades" />
     </Sequence.Variables>
@@ -112,34 +113,35 @@
         </scg:List>
       </ui:FilterDataTable.SelectColumns>
     </ui:FilterDataTable>
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[OpenedTrades]" DisplayName="For opened trade" sap:VirtualizedContainerService.HintSize="527,803" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[OpenedTrades]" DisplayName="For opened trade" sap:VirtualizedContainerService.HintSize="527,834" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Trade" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Check if trade closed" sap:VirtualizedContainerService.HintSize="493,685" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Check if trade closed" sap:VirtualizedContainerService.HintSize="493,716" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
-              <Variable x:TypeArguments="x:String" Name="TradeID" />
+              <Variable x:TypeArguments="x:String" Name="OrderID" />
               <Variable x:TypeArguments="x:String" Name="UserID" />
               <Variable x:TypeArguments="x:String" Name="Exchange" />
               <Variable x:TypeArguments="x:String" Name="PublicAPI" />
               <Variable x:TypeArguments="ss:SecureString" Name="SecretAPI" />
+              <Variable x:TypeArguments="x:String" Name="Pair" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:MultipleAssign DisplayName="Assign update trade data" sap:VirtualizedContainerService.HintSize="431,132" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+            <ui:MultipleAssign DisplayName="Assign update trade data" sap:VirtualizedContainerService.HintSize="431,163" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
               <ui:MultipleAssign.AssignOperations>
                 <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
                   <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
                     <ui:AssignOperation.To>
-                      <OutArgument x:TypeArguments="x:String">[TradeID]</OutArgument>
+                      <OutArgument x:TypeArguments="x:String">[OrderID]</OutArgument>
                     </ui:AssignOperation.To>
                     <ui:AssignOperation.Value>
-                      <InArgument x:TypeArguments="x:String">[Trade("Id").ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String">[Trade("id").ToString]</InArgument>
                     </ui:AssignOperation.Value>
                   </ui:AssignOperation>
                   <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
@@ -147,32 +149,30 @@
                       <OutArgument x:TypeArguments="x:String">[UserID]</OutArgument>
                     </ui:AssignOperation.To>
                     <ui:AssignOperation.Value>
-                      <InArgument x:TypeArguments="x:String">[Trade("User").ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String">[Trade("user").ToString]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:String">[Pair]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:String">[Trade("pair").ToString]</InArgument>
                     </ui:AssignOperation.Value>
                   </ui:AssignOperation>
                 </scg:List>
               </ui:MultipleAssign.AssignOperations>
             </ui:MultipleAssign>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="3.GetUserData.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="431,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Scripts\3.GetUserData.xaml">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Get user data to update trades" sap:VirtualizedContainerService.HintSize="431,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Scripts\3.GetUserData.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="sd:DataTable" x:Key="Users">
-                  <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="Users" />
-                </InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="UserID">
-                  <VisualBasicValue x:TypeArguments="x:String" ExpressionText="UserID" />
-                </InArgument>
-                <OutArgument x:TypeArguments="x:String" x:Key="Exchange">
-                  <VisualBasicReference x:TypeArguments="x:String" ExpressionText="Exchange" />
-                </OutArgument>
-                <OutArgument x:TypeArguments="x:String" x:Key="PublicAPI">
-                  <VisualBasicReference x:TypeArguments="x:String" ExpressionText="PublicAPI" />
-                </OutArgument>
-                <OutArgument x:TypeArguments="ss:SecureString" x:Key="SecretAPI">
-                  <VisualBasicReference x:TypeArguments="ss:SecureString" ExpressionText="SecretAPI" />
-                </OutArgument>
+                <InArgument x:TypeArguments="sd:DataTable" x:Key="Users">[Users]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="UserID">[UserID]</InArgument>
+                <OutArgument x:TypeArguments="x:String" x:Key="Exchange">[Exchange]</OutArgument>
+                <OutArgument x:TypeArguments="x:String" x:Key="PublicAPI">[PublicAPI]</OutArgument>
+                <OutArgument x:TypeArguments="ss:SecureString" x:Key="SecretAPI">[SecretAPI]</OutArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="4.GetOpenOrders.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="431,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Scripts\4.GetOpenOrders.xaml">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Get open orders" sap:VirtualizedContainerService.HintSize="431,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Scripts\4.GetOpenOrders.xaml">
               <ui:InvokeWorkflowFile.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="User">
                   <VisualBasicValue x:TypeArguments="x:String" ExpressionText="UserID" />
@@ -180,9 +180,21 @@
                 <InArgument x:TypeArguments="x:String" x:Key="Exchange">
                   <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Exchange" />
                 </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="PublicKey">
+                  <VisualBasicValue x:TypeArguments="x:String" ExpressionText="PublicAPI" />
+                </InArgument>
+                <InArgument x:TypeArguments="ss:SecureString" x:Key="SecretKey">
+                  <VisualBasicValue x:TypeArguments="ss:SecureString" ExpressionText="SecretAPI" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="Pair">
+                  <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Pair" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="OrderID">
+                  <VisualBasicValue x:TypeArguments="x:String" ExpressionText="OrderID" />
+                </InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
-            <ui:LogMessage DisplayName="Log" sap:VirtualizedContainerService.HintSize="431,94" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[TradeID + &quot; | &quot; + UserID + &quot; | &quot; + Exchange]" />
+            <ui:LogMessage DisplayName="Log" sap:VirtualizedContainerService.HintSize="431,94" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[OrderID + &quot; | &quot; + UserID + &quot; | &quot; + Exchange]" />
           </Sequence>
         </ActivityAction>
       </ui:ForEachRow.Body>

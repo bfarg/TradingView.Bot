@@ -1,6 +1,5 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="ByBitAPI_SignRequest" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ssc="clr-namespace:System.Security.Cryptography;assembly=System.Security.Cryptography.Algorithms" xmlns:st="clr-namespace:System.Text;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="Credential" Type="InArgument(x:String)" />
     <x:Property Name="StaticURL" Type="InArgument(x:String)" />
     <x:Property Name="Timestamp" Type="InArgument(x:String)" />
     <x:Property Name="SecretKey" Type="InArgument(ss:SecureString)" />
@@ -20,7 +19,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1013,954</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1021,916</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ByBitAPI_SignRequest_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="38">
@@ -127,7 +126,7 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ByBit Signature" sap:VirtualizedContainerService.HintSize="493,889" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ByBit Signature" sap:VirtualizedContainerService.HintSize="493,851" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="HashKey" />
       <Variable x:TypeArguments="x:String" Name="PublicParameters" />
@@ -142,8 +141,8 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:Comment sap:VirtualizedContainerService.HintSize="431,319" sap2010:WorkflowViewState.IdRef="Comment_2" Text="ASCIIEncoding encoding = new ASCIIEncoding();&#xA;&#xA;Byte[] textBytes = encoding.GetBytes(text);&#xA;Byte[] keyBytes = encoding.GetBytes(key);&#xA;&#xA;Byte[] hashBytes;&#xA;&#xA;using (HMACSHA256 hash = new HMACSHA256(keyBytes))&#xA;hashBytes = hash.ComputeHash(textBytes);&#xA;&#xA;return BitConverter.ToString(hashBytes).Replace(&quot;-&quot;, &quot;&quot;).ToLower();" />
-    <ui:MultipleAssign DisplayName="Sign parameters" sap:VirtualizedContainerService.HintSize="431,265" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+    <ui:Comment sap:VirtualizedContainerService.HintSize="431,310" sap2010:WorkflowViewState.IdRef="Comment_2" Text="ASCIIEncoding encoding = new ASCIIEncoding();&#xA;&#xA;Byte[] textBytes = encoding.GetBytes(text);&#xA;Byte[] keyBytes = encoding.GetBytes(key);&#xA;&#xA;Byte[] hashBytes;&#xA;&#xA;using (HMACSHA256 hash = new HMACSHA256(keyBytes))&#xA;hashBytes = hash.ComputeHash(textBytes);&#xA;&#xA;return BitConverter.ToString(hashBytes).Replace(&quot;-&quot;, &quot;&quot;).ToLower();" />
+    <ui:MultipleAssign DisplayName="Sign parameters" sap:VirtualizedContainerService.HintSize="431,256" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="16">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
@@ -197,6 +196,6 @@
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="431,103" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Parameters to sign : &quot; + ParametersURL]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="431,94" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Parameters to sign : &quot; + ParametersURL]" />
   </Sequence>
 </Activity>

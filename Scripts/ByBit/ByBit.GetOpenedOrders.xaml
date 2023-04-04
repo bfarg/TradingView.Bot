@@ -1,16 +1,14 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Test_GetTrades" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Test_GetTrades" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="User" Type="InArgument(x:String)" />
+    <x:Property Name="PublicKey" Type="InArgument(x:String)" />
+    <x:Property Name="SecretKey" Type="InArgument(ss:SecureString)" />
     <x:Property Name="Pair" Type="InArgument(x:String)" />
-    <x:Property Name="OrderId" Type="InArgument(x:String)" />
+    <x:Property Name="OrderID" Type="InArgument(x:String)" />
   </x:Members>
-  <this:Test_GetTrades.User>
-    <InArgument x:TypeArguments="x:String" />
-  </this:Test_GetTrades.User>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1013,784</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1021,784</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Test_GetTrades_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="37">
@@ -111,7 +109,7 @@
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Test Get positions" sap:VirtualizedContainerService.HintSize="493,426" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Test Get positions" sap:VirtualizedContainerService.HintSize="493,397" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Default="[New Dictionary(Of String,String)]" Name="Parameters" />
       <Variable x:TypeArguments="njl:JObject" Name="Result" />
@@ -121,9 +119,17 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:MultipleAssign DisplayName="Assign ByBit.GetOrderList parameters" sap:VirtualizedContainerService.HintSize="431,141" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
+    <ui:MultipleAssign DisplayName="Assign ByBit.GetOrderList parameters" sap:VirtualizedContainerService.HintSize="431,132" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Parameters("orderId")]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[OrderID]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
             <ui:AssignOperation.To>
               <OutArgument x:TypeArguments="x:String">[Parameters("symbol")]</OutArgument>
@@ -132,31 +138,16 @@
               <InArgument x:TypeArguments="x:String">[Pair]</InArgument>
             </ui:AssignOperation.Value>
           </ui:AssignOperation>
-          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
-            <ui:AssignOperation.To>
-              <OutArgument x:TypeArguments="x:String">[Parameters("orderId")]</OutArgument>
-            </ui:AssignOperation.To>
-            <ui:AssignOperation.Value>
-              <InArgument x:TypeArguments="x:String">[OrderId]</InArgument>
-            </ui:AssignOperation.Value>
-          </ui:AssignOperation>
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ByBit Get Request" sap:VirtualizedContainerService.HintSize="431,123" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Scripts\ByBit\ByBit.Get.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ByBit Get Request" sap:VirtualizedContainerService.HintSize="431,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Scripts\ByBit\ByBit.Get.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="Endpoint">
-          <Literal x:TypeArguments="x:String">.ByBit.GetOrderList</Literal>
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="User">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="User" />
-        </InArgument>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="Parameters">
-          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:String)" ExpressionText="Parameters" />
-        </InArgument>
-        <OutArgument x:TypeArguments="njl:JObject" x:Key="Result">
-          <VisualBasicReference x:TypeArguments="njl:JObject" ExpressionText="Result" />
-        </OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Endpoint">ByBit.GetOpenOrders</InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="Parameters">[Parameters]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="PublicKey">[PublicKey]</InArgument>
+        <InArgument x:TypeArguments="ss:SecureString" x:Key="SecretKey">[SecretKey]</InArgument>
+        <OutArgument x:TypeArguments="njl:JObject" x:Key="Result">[Result]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
   </Sequence>

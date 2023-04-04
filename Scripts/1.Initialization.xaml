@@ -1,4 +1,3 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Activity mc:Ignorable="sap sap2010" x:Class="Config" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="Config" Type="OutArgument(scg:Dictionary(x:String, x:String))" />
@@ -10,7 +9,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>951,1059</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1021,1059</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Config_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="100">
@@ -153,6 +152,9 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <Sequence DisplayName="Assets" sap:VirtualizedContainerService.HintSize="450,83" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="DatabaseTrades" />
+      </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -247,12 +249,17 @@
           <OutArgument x:TypeArguments="x:String">[Risk]</OutArgument>
         </ui:GetRobotAsset.Value>
       </ui:GetRobotAsset>
-      <ui:GetRobotCredential Username="{x:Null}" AssetName="Database.Cred" CacheStrategy="None" DisplayName="Get Credential" sap:VirtualizedContainerService.HintSize="434,143" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[DatabaseCred]">
+      <ui:GetRobotCredential Username="{x:Null}" AssetName="Database.Cred" CacheStrategy="None" DisplayName="Get database credential" sap:VirtualizedContainerService.HintSize="434,143" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[DatabaseCred]">
         <ui:GetRobotCredential.TimeoutMS>
           <InArgument x:TypeArguments="x:Int32" />
         </ui:GetRobotCredential.TimeoutMS>
       </ui:GetRobotCredential>
-      <ui:MultipleAssign DisplayName="Assign alerts variables to config" sap:VirtualizedContainerService.HintSize="434,287" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+      <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="Database.Trades" CacheStrategy="None" DisplayName="Get trades database" sap:VirtualizedContainerService.HintSize="434,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_16">
+        <ui:GetRobotAsset.Value>
+          <OutArgument x:TypeArguments="x:String">[DatabaseTrades]</OutArgument>
+        </ui:GetRobotAsset.Value>
+      </ui:GetRobotAsset>
+      <ui:MultipleAssign DisplayName="Assign alerts variables to config" sap:VirtualizedContainerService.HintSize="434,318" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
         <ui:MultipleAssign.AssignOperations>
           <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
@@ -311,6 +318,14 @@
                 <InArgument x:TypeArguments="x:String">[Risk]</InArgument>
               </ui:AssignOperation.Value>
             </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_11">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[Config("TradesDatabase")]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">[DatabaseTrades]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
           </scg:List>
         </ui:MultipleAssign.AssignOperations>
       </ui:MultipleAssign>
@@ -321,7 +336,7 @@
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ui:ExecuteQuery.Parameters>
     </ui:ExecuteQuery>
-    <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[Trades]" DisplayName="Get trades" ExistingDbConnection="[Database]" sap:VirtualizedContainerService.HintSize="450,89" sap2010:WorkflowViewState.IdRef="ExecuteQuery_2" Sql="SELECT * FROM [TradingViewBot.Reporting.Dev]">
+    <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[Trades]" DisplayName="Get trades" ExistingDbConnection="[Database]" sap:VirtualizedContainerService.HintSize="450,89" sap2010:WorkflowViewState.IdRef="ExecuteQuery_2" Sql="[&quot;SELECT * FROM [&quot;+Config(&quot;TradesDatabase&quot;)+&quot;]&quot;]">
       <ui:ExecuteQuery.Parameters>
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ui:ExecuteQuery.Parameters>

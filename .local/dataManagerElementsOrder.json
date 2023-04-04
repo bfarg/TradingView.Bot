@@ -27,6 +27,7 @@
       "Path": "Scripts/1.Initialization.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "DatabaseTrades&Sequence_2",
         "DatabaseCred&Sequence_1",
         "Risk&Sequence_1",
         "Ratio&Sequence_1",
@@ -51,19 +52,21 @@
       "Path": "Process.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "SecretAPI&Sequence_2",
-        "PublicAPI&Sequence_2",
-        "User&Sequence_2",
-        "UserID&Sequence_2",
-        "Exchange&Sequence_2",
-        "SL&Sequence_2",
-        "TP&Sequence_2",
-        "Price&Sequence_2",
-        "Interval&Sequence_2",
-        "Trade&Sequence_2",
-        "Pair&Sequence_2",
-        "Match&Sequence_2",
-        "Strategy&Sequence_2"
+        "SecretKey&Sequence_6",
+        "PublicKey&Sequence_6",
+        "Timeframe&Sequence_6",
+        "OrderID&Sequence_6",
+        "NewTrade&Sequence_6",
+        "NewTrades&Sequence_1",
+        "Match&Sequence_6",
+        "Strategy&Sequence_6",
+        "Pair&Sequence_6",
+        "Trade&Sequence_6",
+        "Price&Sequence_6",
+        "TP&Sequence_6",
+        "SL&Sequence_6",
+        "UserID&Sequence_6",
+        "Exchange&Sequence_6"
       ],
       "ArgumentsSectionElementsOrder": [
         "Trades",
@@ -161,6 +164,8 @@
         "TriggerDirection&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
+        "SecretKey",
+        "PublicKey",
         "User",
         "CloseOrder",
         "Pair",
@@ -178,7 +183,7 @@
         "ExecutionTime",
         "TriggerPrice"
       ],
-      "ConstantsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
     {
@@ -186,20 +191,19 @@
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
         "StaticURL&Sequence_1",
-        "PublicKey&Sequence_1",
-        "SecretKey&Sequence_1",
         "Timestamp&Sequence_1",
         "Signature&Sequence_1",
         "Json&Sequence_1",
         "Timeout&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
+        "SecretKey",
+        "PublicKey",
         "Endpoint",
-        "User",
         "Parameters",
         "Result"
       ],
-      "ConstantsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
     {
@@ -229,7 +233,6 @@
         "KeyBytes&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
-        "Credential",
         "StaticURL",
         "Timestamp",
         "SecretKey",
@@ -237,7 +240,7 @@
         "Signature",
         "ParametersURL"
       ],
-      "ConstantsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
     {
@@ -264,15 +267,22 @@
     {
       "Path": "Scripts/6.Reporting.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": null,
-      "ArgumentsSectionElementsOrder": null,
-      "ConstantsSectionElementsOrder": null,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [
+        "NewTrades",
+        "TradesTable",
+        "Database"
+      ],
+      "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
     {
       "Path": "Scripts/Test.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "TradesTable&Sequence_1",
+        "NewTrades&Sequence_1",
+        "DatabaseTrades&Sequence_1",
         "Database&Sequence_1",
         "DatabaseCred&Sequence_1",
         "Trades&Sequence_1"
@@ -293,12 +303,13 @@
       "Path": "Scripts/2.UpdateTrades.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "OrderID&Sequence_2",
+        "Pair&Sequence_2",
         "SecretAPI&Sequence_2",
         "PublicAPI&Sequence_2",
         "Exchange&Sequence_2",
         "UserID&Sequence_2",
-        "OpenedTrades&Sequence_1",
-        "TradeID&Sequence_2"
+        "OpenedTrades&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
         "Users",
@@ -326,6 +337,10 @@
       "SortBy": 0,
       "VariablesSectionElementsOrder": [],
       "ArgumentsSectionElementsOrder": [
+        "OrderID",
+        "Pair",
+        "SecretKey",
+        "PublicKey",
         "Exchange",
         "User"
       ],
@@ -340,9 +355,52 @@
         "Result&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
-        "User",
+        "OrderID",
         "Pair",
-        "OrderId"
+        "SecretKey",
+        "PublicKey"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Scripts/ByBit/ByBit.Get.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "ParametersURL&Sequence_1",
+        "Timestamp&Sequence_1",
+        "Signature&Sequence_1",
+        "StaticURL&Sequence_1",
+        "Timeout&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "Result",
+        "SecretKey",
+        "PublicKey",
+        "Endpoint",
+        "Parameters"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Scripts/7.OpenOrder.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [
+        "SecretKey",
+        "PublicKey",
+        "OrderID",
+        "Exchange",
+        "Username",
+        "CloseOrder",
+        "Pair",
+        "OrderType",
+        "Decision",
+        "OrderPrice",
+        "Quantity",
+        "TP",
+        "SL"
       ],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
