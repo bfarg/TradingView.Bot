@@ -6,6 +6,9 @@
     <x:Property Name="SecretKey" Type="InArgument(ss:SecureString)" />
     <x:Property Name="Pair" Type="InArgument(x:String)" />
     <x:Property Name="OrderID" Type="InArgument(x:String)" />
+    <x:Property Name="Closed" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="Trigger" Type="OutArgument(x:String)" />
+    <x:Property Name="Price" Type="OutArgument(x:Double)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -81,7 +84,7 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Get open orders" sap:VirtualizedContainerService.HintSize="559,414" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Get open orders" sap:VirtualizedContainerService.HintSize="559,548" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -105,8 +108,18 @@
           <InArgument x:TypeArguments="x:String" x:Key="OrderID">
             <VisualBasicValue x:TypeArguments="x:String" ExpressionText="OrderID" />
           </InArgument>
+          <OutArgument x:TypeArguments="x:Boolean" x:Key="Closed">
+            <VisualBasicReference x:TypeArguments="x:Boolean" ExpressionText="Closed" />
+          </OutArgument>
+          <OutArgument x:TypeArguments="x:Double" x:Key="Price">
+            <VisualBasicReference x:TypeArguments="x:Double" ExpressionText="Price" />
+          </OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="Trigger">
+            <VisualBasicReference x:TypeArguments="x:String" ExpressionText="Trigger" />
+          </OutArgument>
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
     </Switch>
+    <ui:LogMessage DisplayName="Log order status" sap:VirtualizedContainerService.HintSize="497,94" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[&quot;Order closed : &quot; + Closed.ToString + vbCrLf + &quot;Price : &quot; + Price.ToString]" />
   </Sequence>
 </Activity>

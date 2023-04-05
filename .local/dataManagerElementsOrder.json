@@ -12,12 +12,12 @@
       "Path": "Main.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "Trades&StateMachine_1",
-        "Database&StateMachine_1",
-        "Users&StateMachine_1",
-        "Alerts&StateMachine_1",
         "Config&StateMachine_1",
-        "SystemException&StateMachine_1"
+        "SystemException&StateMachine_1",
+        "Alerts&StateMachine_1",
+        "Users&StateMachine_1",
+        "Database&StateMachine_1",
+        "Trades&StateMachine_1"
       ],
       "ArgumentsSectionElementsOrder": [],
       "ConstantsSectionElementsOrder": [],
@@ -27,7 +27,7 @@
       "Path": "Scripts/1.Initialization.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "DatabaseTrades&Sequence_2",
+        "TradesDatabase&Sequence_1",
         "DatabaseCred&Sequence_1",
         "Risk&Sequence_1",
         "Ratio&Sequence_1",
@@ -280,12 +280,10 @@
       "Path": "Scripts/Test.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "TradesTable&Sequence_1",
-        "NewTrades&Sequence_1",
-        "DatabaseTrades&Sequence_1",
-        "Database&Sequence_1",
-        "DatabaseCred&Sequence_1",
-        "Trades&Sequence_1"
+        "TradesTable&Sequence_2",
+        "DatabaseTrades&Sequence_2",
+        "DatabaseCred&Sequence_2",
+        "Database&Sequence_2"
       ],
       "ArgumentsSectionElementsOrder": [],
       "ConstantsSectionElementsOrder": [],
@@ -303,6 +301,10 @@
       "Path": "Scripts/2.UpdateTrades.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "Profit&Sequence_5",
+        "Trigger&Sequence_2",
+        "Price&Sequence_2",
+        "Closed&Sequence_2",
         "OrderID&Sequence_2",
         "Pair&Sequence_2",
         "SecretAPI&Sequence_2",
@@ -312,6 +314,8 @@
         "OpenedTrades&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
+        "TradesDatabase",
+        "Database",
         "Users",
         "Trades"
       ],
@@ -337,6 +341,9 @@
       "SortBy": 0,
       "VariablesSectionElementsOrder": [],
       "ArgumentsSectionElementsOrder": [
+        "Price",
+        "Trigger",
+        "Closed",
         "OrderID",
         "Pair",
         "SecretKey",
@@ -355,6 +362,9 @@
         "Result&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
+        "Trigger",
+        "Price",
+        "Closed",
         "OrderID",
         "Pair",
         "SecretKey",

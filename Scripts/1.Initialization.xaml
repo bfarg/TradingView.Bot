@@ -145,6 +145,7 @@
       <Variable x:TypeArguments="x:String" Name="Ratio" />
       <Variable x:TypeArguments="x:String" Name="Risk" />
       <Variable x:TypeArguments="ss:SecureString" Name="DatabaseCred" />
+      <Variable x:TypeArguments="x:String" Name="TradesDatabase" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -152,9 +153,6 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <Sequence DisplayName="Assets" sap:VirtualizedContainerService.HintSize="450,83" sap2010:WorkflowViewState.IdRef="Sequence_2">
-      <Sequence.Variables>
-        <Variable x:TypeArguments="x:String" Name="DatabaseTrades" />
-      </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -256,12 +254,12 @@
       </ui:GetRobotCredential>
       <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="Database.Trades" CacheStrategy="None" DisplayName="Get trades database" sap:VirtualizedContainerService.HintSize="434,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_16">
         <ui:GetRobotAsset.Value>
-          <OutArgument x:TypeArguments="x:String">[DatabaseTrades]</OutArgument>
+          <OutArgument x:TypeArguments="x:String">[TradesDatabase]</OutArgument>
         </ui:GetRobotAsset.Value>
       </ui:GetRobotAsset>
       <ui:MultipleAssign DisplayName="Assign alerts variables to config" sap:VirtualizedContainerService.HintSize="434,318" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
         <ui:MultipleAssign.AssignOperations>
-          <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+          <scg:List x:TypeArguments="ui:AssignOperation" Capacity="16">
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
               <ui:AssignOperation.To>
                 <OutArgument x:TypeArguments="x:String">[Config("Alerts.TriggerSubject")]</OutArgument>
@@ -323,7 +321,7 @@
                 <OutArgument x:TypeArguments="x:String">[Config("TradesDatabase")]</OutArgument>
               </ui:AssignOperation.To>
               <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="x:String">[DatabaseTrades]</InArgument>
+                <InArgument x:TypeArguments="x:String">[TradesDatabase]</InArgument>
               </ui:AssignOperation.Value>
             </ui:AssignOperation>
           </scg:List>
@@ -336,15 +334,25 @@
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ui:ExecuteQuery.Parameters>
     </ui:ExecuteQuery>
-    <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[Trades]" DisplayName="Get trades" ExistingDbConnection="[Database]" sap:VirtualizedContainerService.HintSize="450,89" sap2010:WorkflowViewState.IdRef="ExecuteQuery_2" Sql="[&quot;SELECT * FROM [&quot;+Config(&quot;TradesDatabase&quot;)+&quot;]&quot;]">
+    <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[Trades]" DisplayName="Get trades" ExistingDbConnection="[Database]" sap:VirtualizedContainerService.HintSize="450,89" sap2010:WorkflowViewState.IdRef="ExecuteQuery_2" Sql="[&quot;SELECT * FROM [&quot;+TradesDatabase+&quot;]&quot;]">
       <ui:ExecuteQuery.Parameters>
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ui:ExecuteQuery.Parameters>
     </ui:ExecuteQuery>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Update trades" sap:VirtualizedContainerService.HintSize="450,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Scripts\2.UpdateTrades.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="Trades">[Trades]</InArgument>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="Users">[Users]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="Trades">
+          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="Trades" />
+        </InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="Users">
+          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="Users" />
+        </InArgument>
+        <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="Database">
+          <VisualBasicValue x:TypeArguments="ui:DatabaseConnection" ExpressionText="Database" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="TradesDatabase">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="TradesDatabase" />
+        </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Get alerts" sap:VirtualizedContainerService.HintSize="450,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Scripts\5.AlertsProcessing.xaml">
