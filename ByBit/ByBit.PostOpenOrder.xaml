@@ -1,0 +1,424 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Activity mc:Ignorable="sap sap2010" x:Class="ByBit_PlaceOrder" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="User" Type="InArgument(x:String)" />
+    <x:Property Name="CloseOrder" Type="InArgument(x:Boolean)" />
+    <x:Property Name="Pair" Type="InArgument(x:String)" />
+    <x:Property Name="OrderType" Type="InArgument(x:String)" />
+    <x:Property Name="Side" Type="InArgument(x:String)" />
+    <x:Property Name="Price" Type="InArgument(x:String)" />
+    <x:Property Name="Quantity" Type="InArgument(x:String)" />
+    <x:Property Name="TakeProfit" Type="InArgument(x:String)" />
+    <x:Property Name="StopLoss" Type="InArgument(x:String)" />
+    <x:Property Name="PositionIdx" Type="InArgument(x:String)" />
+    <x:Property Name="CloseOnTrigger" Type="InArgument(x:String)" />
+    <x:Property Name="TimeInForce" Type="InArgument(x:String)" />
+    <x:Property Name="OrderLinkId" Type="InArgument(x:String)" />
+    <x:Property Name="OrderId" Type="OutArgument(x:String)" />
+    <x:Property Name="ExecutionTime" Type="OutArgument(x:String)" />
+    <x:Property Name="TriggerPrice" Type="InArgument(x:String)" />
+    <x:Property Name="PublicKey" Type="InArgument(x:String)" />
+    <x:Property Name="SecretKey" Type="InArgument(ss:SecureString)" />
+  </x:Members>
+  <this:ByBit_PlaceOrder.User>
+    <InArgument x:TypeArguments="x:String" />
+  </this:ByBit_PlaceOrder.User>
+  <this:ByBit_PlaceOrder.CloseOrder>
+    <InArgument x:TypeArguments="x:Boolean" />
+  </this:ByBit_PlaceOrder.CloseOrder>
+  <this:ByBit_PlaceOrder.Pair>
+    <InArgument x:TypeArguments="x:String" />
+  </this:ByBit_PlaceOrder.Pair>
+  <this:ByBit_PlaceOrder.OrderType>
+    <InArgument x:TypeArguments="x:String" />
+  </this:ByBit_PlaceOrder.OrderType>
+  <this:ByBit_PlaceOrder.Side>
+    <InArgument x:TypeArguments="x:String" />
+  </this:ByBit_PlaceOrder.Side>
+  <this:ByBit_PlaceOrder.Price>
+    <InArgument x:TypeArguments="x:String" />
+  </this:ByBit_PlaceOrder.Price>
+  <this:ByBit_PlaceOrder.Quantity>
+    <InArgument x:TypeArguments="x:String" />
+  </this:ByBit_PlaceOrder.Quantity>
+  <this:ByBit_PlaceOrder.TakeProfit>
+    <InArgument x:TypeArguments="x:String" />
+  </this:ByBit_PlaceOrder.TakeProfit>
+  <this:ByBit_PlaceOrder.StopLoss>
+    <InArgument x:TypeArguments="x:String" />
+  </this:ByBit_PlaceOrder.StopLoss>
+  <this:ByBit_PlaceOrder.PositionIdx>
+    <InArgument x:TypeArguments="x:String" />
+  </this:ByBit_PlaceOrder.PositionIdx>
+  <this:ByBit_PlaceOrder.CloseOnTrigger>
+    <InArgument x:TypeArguments="x:String" />
+  </this:ByBit_PlaceOrder.CloseOnTrigger>
+  <this:ByBit_PlaceOrder.TimeInForce>
+    <InArgument x:TypeArguments="x:String" />
+  </this:ByBit_PlaceOrder.TimeInForce>
+  <this:ByBit_PlaceOrder.OrderLinkId>
+    <InArgument x:TypeArguments="x:String" />
+  </this:ByBit_PlaceOrder.OrderLinkId>
+  <this:ByBit_PlaceOrder.TriggerPrice>
+    <InArgument x:TypeArguments="x:String" />
+  </this:ByBit_PlaceOrder.TriggerPrice>
+  <this:ByBit_PlaceOrder.PublicKey>
+    <InArgument x:TypeArguments="x:String" />
+  </this:ByBit_PlaceOrder.PublicKey>
+  <this:ByBit_PlaceOrder.SecretKey>
+    <InArgument x:TypeArguments="ss:SecureString" />
+  </this:ByBit_PlaceOrder.SecretKey>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1021,1595</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ByBit_PlaceOrder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="39">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Web</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Security.Cryptography</x:String>
+      <x:String>System.Net</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="136">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Collections.Specialized</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Net.HttpListener</AssemblyReference>
+      <AssemblyReference>System.Net.NameResolution</AssemblyReference>
+      <AssemblyReference>System.Net.Primitives</AssemblyReference>
+      <AssemblyReference>System.Net.Requests</AssemblyReference>
+      <AssemblyReference>System.Net.ServicePoint</AssemblyReference>
+      <AssemblyReference>System.Net.WebClient</AssemblyReference>
+      <AssemblyReference>System.Net.WebHeaderCollection</AssemblyReference>
+      <AssemblyReference>System.Net.WebProxy</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Security.Cryptography.Algorithms</AssemblyReference>
+      <AssemblyReference>System.Security.Cryptography.Cng</AssemblyReference>
+      <AssemblyReference>System.Security.Cryptography.Csp</AssemblyReference>
+      <AssemblyReference>System.Security.Cryptography.Encoding</AssemblyReference>
+      <AssemblyReference>System.Security.Cryptography.OpenSsl</AssemblyReference>
+      <AssemblyReference>System.Security.Cryptography.Pkcs</AssemblyReference>
+      <AssemblyReference>System.Security.Cryptography.Primitives</AssemblyReference>
+      <AssemblyReference>System.Security.Cryptography.ProtectedData</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Text.Encoding.CodePages</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="ByBit place order" sap:VirtualizedContainerService.HintSize="547,1530" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Default="[New Dictionary(Of String,String)]" Name="Parameters" />
+      <Variable x:TypeArguments="njl:JObject" Name="Result" />
+      <Variable x:TypeArguments="x:String" Name="TriggerDirection" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:IfElseIf DisplayName="If limit order" sap:VirtualizedContainerService.HintSize="485,53" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
+      <ui:IfElseIf.ConditionBlocks>
+        <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+          <ui:IfElseIfBlock BlockType="If" Condition="[OrderType = &quot;Limit&quot;]">
+            <ui:IfElseIfBlock.Then>
+              <If Condition="[Side = &quot;Buy&quot;]" DisplayName="Trigger direction" sap:VirtualizedContainerService.HintSize="334,151" sap2010:WorkflowViewState.IdRef="If_2">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Assign DisplayName="Assign TriggerDirection is rise" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_2">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[TriggerDirection]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">1</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </If.Then>
+                <If.Else>
+                  <Assign DisplayName="Assign TriggerDirection is fall" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_3">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[TriggerDirection]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">2</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </If.Else>
+              </If>
+            </ui:IfElseIfBlock.Then>
+          </ui:IfElseIfBlock>
+        </sc:BindingList>
+      </ui:IfElseIf.ConditionBlocks>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:IfElseIf>
+    <ui:MultipleAssign DisplayName="Init ByBit place order" sap:VirtualizedContainerService.HintSize="485,473" sap2010:WorkflowViewState.IdRef="MultipleAssign_8">
+      <ui:MultipleAssign.AssignOperations>
+        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="16">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_59">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Parameters("close_on_trigger")]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[CloseOnTrigger]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_60">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Parameters("orderType")]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[OrderType]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_61">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Parameters("positionIdx")]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[PositionIdx]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_62">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Parameters("price")]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[Price]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_73">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Parameters("triggerPrice")]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[TriggerPrice]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_63">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Parameters("qty")]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[Quantity]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_64">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Parameters("reduceOnly")]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[CloseOrder.ToString.ToLower]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_66">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Parameters("symbol")]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[Pair]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_69">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Parameters("takeProfit")]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[TakeProfit]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_67">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Parameters("timeInForce")]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[TimeInForce]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_68">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Parameters("orderLinkId")]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[OrderLinkId]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_70">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Parameters("stopLoss")]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[StopLoss]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_74">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Parameters("triggerDirection")]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[TriggerDirection]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+        </scg:List>
+      </ui:MultipleAssign.AssignOperations>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:MultipleAssign>
+    <ui:IfElseIf DisplayName="Set ByBit side" sap:VirtualizedContainerService.HintSize="485,487" sap2010:WorkflowViewState.IdRef="IfElseIf_2">
+      <ui:IfElseIf.ConditionBlocks>
+        <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+          <ui:IfElseIfBlock BlockType="If" Condition="[Side = &quot;Long&quot;]">
+            <ui:IfElseIfBlock.Then>
+              <Assign DisplayName="Assign buy" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_4">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[Parameters("side")]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">Buy</InArgument>
+                </Assign.Value>
+              </Assign>
+            </ui:IfElseIfBlock.Then>
+          </ui:IfElseIfBlock>
+          <ui:IfElseIfBlock BlockType="ElseIf" Condition="[Side = &quot;Short&quot;]">
+            <ui:IfElseIfBlock.Then>
+              <Assign DisplayName="Assign sell" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_5">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[Parameters("side")]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">Sell</InArgument>
+                </Assign.Value>
+              </Assign>
+            </ui:IfElseIfBlock.Then>
+          </ui:IfElseIfBlock>
+        </sc:BindingList>
+      </ui:IfElseIf.ConditionBlocks>
+    </ui:IfElseIf>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ByBit POST" sap:VirtualizedContainerService.HintSize="485,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="ByBit\ByBit.Post.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="Endpoint">ByBit.PlaceOrder</InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="Parameters">[Parameters]</InArgument>
+        <OutArgument x:TypeArguments="njl:JObject" x:Key="Result">[Result]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="PublicKey">[PublicKey]</InArgument>
+        <InArgument x:TypeArguments="ss:SecureString" x:Key="SecretKey">[SecretKey]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:MultipleAssign DisplayName="Assign ByBit.PostOrder out arguments" sap:VirtualizedContainerService.HintSize="485,132" sap2010:WorkflowViewState.IdRef="MultipleAssign_9">
+      <ui:MultipleAssign.AssignOperations>
+        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_71">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[OrderId]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[Result("result")("orderId").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_72">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[ExecutionTime]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[Result("time").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+        </scg:List>
+      </ui:MultipleAssign.AssignOperations>
+    </ui:MultipleAssign>
+  </Sequence>
+</Activity>

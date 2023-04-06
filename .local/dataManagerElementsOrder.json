@@ -9,7 +9,7 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Main.xaml",
+      "Path": "0.Main.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
         "Config&StateMachine_1",
@@ -24,13 +24,12 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/1.Initialization.xaml",
+      "Path": "1.Initialization.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
         "TradesDatabase&Sequence_1",
         "DatabaseCred&Sequence_1",
         "Risk&Sequence_1",
-        "Ratio&Sequence_1",
         "AlertsFolderArchiving&Sequence_1",
         "AlertsFolderReception&Sequence_1",
         "AlertsTriggerBody&Sequence_1",
@@ -49,24 +48,23 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Process.xaml",
+      "Path": "0.Process.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "UserID&Sequence_6",
+        "SL&Sequence_6",
+        "TP&Sequence_6",
+        "Price&Sequence_6",
+        "Pair&Sequence_6",
+        "Strategy&Sequence_6",
+        "Exchange&Sequence_6",
+        "OrderID&Sequence_6",
         "SecretKey&Sequence_6",
         "PublicKey&Sequence_6",
         "Timeframe&Sequence_6",
-        "OrderID&Sequence_6",
         "NewTrade&Sequence_6",
         "NewTrades&Sequence_1",
-        "Match&Sequence_6",
-        "Strategy&Sequence_6",
-        "Pair&Sequence_6",
-        "Trade&Sequence_6",
-        "Price&Sequence_6",
-        "TP&Sequence_6",
-        "SL&Sequence_6",
-        "UserID&Sequence_6",
-        "Exchange&Sequence_6"
+        "Trade&Sequence_6"
       ],
       "ArgumentsSectionElementsOrder": [
         "Trades",
@@ -79,7 +77,7 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/5.AlertsProcessing.xaml",
+      "Path": "5.AlertsProcessing.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
         "AlertsMail&Sequence_1",
@@ -95,68 +93,7 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/Alerts.xaml",
-      "SortBy": 0,
-      "VariablesSectionElementsOrder": null,
-      "ArgumentsSectionElementsOrder": null,
-      "ConstantsSectionElementsOrder": null,
-      "AddedNamespaces": null
-    },
-    {
-      "Path": "Scripts/3.GetAlertData.xaml",
-      "SortBy": 0,
-      "VariablesSectionElementsOrder": [
-        "BoxBottom&Sequence_1",
-        "BoxTop&Sequence_1",
-        "Value&Sequence_1",
-        "Key&Sequence_1",
-        "Data&Sequence_1",
-        "Datas&Sequence_1"
-      ],
-      "ArgumentsSectionElementsOrder": [
-        "UserID",
-        "SL",
-        "TP",
-        "Price",
-        "Interval",
-        "Trade",
-        "Pair",
-        "Strategy",
-        "Alert",
-        "Config"
-      ],
-      "ConstantsSectionElementsOrder": null,
-      "AddedNamespaces": null
-    },
-    {
-      "Path": "Scripts/AlertsDatas.xaml",
-      "SortBy": 0,
-      "VariablesSectionElementsOrder": null,
-      "ArgumentsSectionElementsOrder": null,
-      "ConstantsSectionElementsOrder": null,
-      "AddedNamespaces": null
-    },
-    {
-      "Path": "Scripts/5.OpenOrder.xaml",
-      "SortBy": 0,
-      "VariablesSectionElementsOrder": null,
-      "ArgumentsSectionElementsOrder": [
-        "Exchange",
-        "Username",
-        "CloseOrder",
-        "Pair",
-        "OrderType",
-        "Decision",
-        "OrderPrice",
-        "Quantity",
-        "TP",
-        "SL"
-      ],
-      "ConstantsSectionElementsOrder": null,
-      "AddedNamespaces": null
-    },
-    {
-      "Path": "Scripts/ByBit/ByBit.PostOpenOrder.xaml",
+      "Path": "ByBit/ByBit.PostOpenOrder.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
         "Parameters&Sequence_1",
@@ -187,7 +124,7 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/ByBit/ByBit.Post.xaml",
+      "Path": "ByBit/ByBit.Post.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
         "StaticURL&Sequence_1",
@@ -207,7 +144,7 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/ByBit/ByBit.Timestamp.xaml",
+      "Path": "ByBit/ByBit.Timestamp.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
         "ByBitServerTimeURL&Sequence_1",
@@ -221,7 +158,7 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/ByBit/ByBit.Signature.xaml",
+      "Path": "ByBit/ByBit.Signature.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
         "HashKey&Sequence_1",
@@ -244,7 +181,7 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/ByBit/ByBit.RequestHTTP.xaml",
+      "Path": "ByBit/ByBit.RequestHTTP.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
         "SignType&Sequence_1",
@@ -265,7 +202,7 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/6.Reporting.xaml",
+      "Path": "9.Reporting.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [],
       "ArgumentsSectionElementsOrder": [
@@ -277,7 +214,7 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/Test.xaml",
+      "Path": "0.Test.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
         "TradesTable&Sequence_2",
@@ -290,17 +227,12 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/3.GetTrade.xaml",
-      "SortBy": 0,
-      "VariablesSectionElementsOrder": null,
-      "ArgumentsSectionElementsOrder": null,
-      "ConstantsSectionElementsOrder": null,
-      "AddedNamespaces": null
-    },
-    {
-      "Path": "Scripts/2.UpdateTrades.xaml",
+      "Path": "2.UpdateTrades.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "Trade&Sequence_2",
+        "SL&Sequence_2",
+        "TP&Sequence_2",
         "Profit&Sequence_5",
         "Trigger&Sequence_2",
         "Price&Sequence_2",
@@ -323,7 +255,7 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/3.GetUserData.xaml",
+      "Path": "3.GetUserData.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [],
       "ArgumentsSectionElementsOrder": [
@@ -337,7 +269,7 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/4.GetOpenOrders.xaml",
+      "Path": "4.GetOrderStatus.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [],
       "ArgumentsSectionElementsOrder": [
@@ -355,7 +287,7 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/ByBit/ByBit.GetOpenedOrders.xaml",
+      "Path": "ByBit/ByBit.GetOpenedOrders.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
         "Parameters&Sequence_1",
@@ -374,7 +306,7 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/ByBit/ByBit.Get.xaml",
+      "Path": "ByBit/ByBit.Get.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
         "ParametersURL&Sequence_1",
@@ -394,7 +326,7 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Scripts/7.OpenOrder.xaml",
+      "Path": "8.OpenOrder.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [],
       "ArgumentsSectionElementsOrder": [
@@ -411,6 +343,51 @@
         "Quantity",
         "TP",
         "SL"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "7.GetAlertData.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Datas&Sequence_1",
+        "Data&Sequence_1",
+        "Key&Sequence_1",
+        "Value&Sequence_1",
+        "BoxTop&Sequence_1",
+        "BoxBottom&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "Config",
+        "Alert",
+        "Strategy",
+        "Pair",
+        "Trade",
+        "Interval",
+        "Price",
+        "TP",
+        "SL",
+        "UserID"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "ByBit/ByBit.GetClosedPnL.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Parameters&Sequence_1",
+        "Result&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "PublicKey",
+        "SecretKey",
+        "Pair",
+        "OrderID",
+        "Closed",
+        "Price",
+        "Trigger"
       ],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null

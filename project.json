@@ -1,7 +1,7 @@
 {
   "name": "TradingView Bot",
   "description": "TradingView trading bot",
-  "main": "Main.xaml",
+  "main": "0.Main.xaml",
   "dependencies": {
     "UiPath.Database.Activities": "[1.7.1]",
     "UiPath.Mail.Activities": "1.18.2",
@@ -48,8 +48,8 @@
   "expressionLanguage": "VisualBasic",
   "entryPoints": [
     {
-      "filePath": "Main.xaml",
-      "uniqueId": "1410619c-15ab-4d3b-b5d7-3e2e52e2b1b3",
+      "filePath": "0.Main.xaml",
+      "uniqueId": "f38f2cc3-0d20-4c71-9860-843c7261def6",
       "input": [],
       "output": []
     }
